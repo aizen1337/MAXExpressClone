@@ -5,5 +5,6 @@ const getAllBurgers = async (req,res) => {
     snapshot.forEach((doc) => {
         console.log(JSON.stringify({id: doc.id, ...doc.data()}))
     });
+    res.send({message: "Successfully send"})
 }
 module.exports = getAllBurgers 
