@@ -1,0 +1,95 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 200px;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    height: 100vh;
+    text-align: center;
+    align-items: center;
+    justify-content: space-evenly;
+    .close {
+        position: fixed;
+        top: 0;
+        left: 150px;
+        color: red;
+        font-size: 2em;
+        cursor: pointer;
+    }
+    .link-style {
+        text-decoration: none;
+        width: 100%;
+    }
+    .sidebar-item-img {
+        display: flex;
+        justify-content: center;
+        margin: 1em;
+        cursor: pointer;
+        .max-logo {
+            width: 10rem;
+        }
+    }
+    .sidebar-item {
+        margin: 0;
+        padding: 2em;
+        cursor: pointer;
+        color: whitesmoke;
+        display: flex;
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        .sidebar-item-element {
+            font-size: 1.5em;
+            padding-right: 10px;
+            padding-left: 10px;
+            display: flex;
+            justify-content: space-around;
+        }
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+    }
+    .userData {
+        width: 100%;
+        color: white;
+        text-align: center;
+        justify-content: space-around;
+        align-items: center;
+        padding-bottom: 3em;
+        border-top: 1px solid gray;
+        padding-top: 1em;
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .buttons {
+           display: flex;
+           width: 100%;
+           justify-content: space-evenly; 
+           .icon {
+            font-size: 2em;
+            cursor: pointer;
+           }
+    }
+}
+}
+.collapse {
+    display: none;
+}
+.menu {
+    z-index: 100;
+    display: initial;
+    position: absolute;
+    .bars {
+        font-size: 3em;
+        padding: 15px;
+        cursor: pointer;
+    }
+}
