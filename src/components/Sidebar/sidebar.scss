@@ -1,17 +1,17 @@
 .sidebar {
     display: flex;
     flex-direction: column;
-    position: sticky;
+    position: absolute;
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.8);
-    width: 200px;
-    padding-top: 1em;
-    padding-bottom: 1em;
+    width: 100vw;
     height: 100vh;
     text-align: center;
     align-items: center;
     justify-content: space-evenly;
+    transition: 850ms;
+    z-index: 80;
     .close {
         position: fixed;
         top: 0;
@@ -24,18 +24,7 @@
         text-decoration: none;
         width: 100%;
     }
-    .sidebar-item-img {
-        display: flex;
-        justify-content: center;
-        margin: 1em;
-        cursor: pointer;
-        .max-logo {
-            width: 10rem;
-        }
-    }
     .sidebar-item {
-        margin: 0;
-        padding: 2em;
         cursor: pointer;
         color: whitesmoke;
         display: flex;
@@ -43,15 +32,18 @@
         text-align: center;
         justify-content: center;
         align-items: center;
+        height: 10em;
         .sidebar-item-element {
             font-size: 1.5em;
             padding-right: 10px;
             padding-left: 10px;
             display: flex;
             justify-content: space-around;
+            align-items: center;
+            text-align: center;
         }
         &:hover {
-            background-color: rgba(0, 0, 0, 0.1);
+            background-color: rgba(0, 0, 0, 0.5);
         }
     }
     .userData {
@@ -60,9 +52,7 @@
         text-align: center;
         justify-content: space-around;
         align-items: center;
-        padding-bottom: 3em;
-        border-top: 1px solid gray;
-        padding-top: 1em;
+        float: right;
         img {
             width: 50px;
             height: 50px;
@@ -81,15 +71,23 @@
 }
 }
 .collapse {
+    transition: 350ms;
     display: none;
 }
 .menu {
+    position: sticky;
+    top: 0;
+    left: 0;
     z-index: 100;
     display: initial;
     position: absolute;
     .bars {
+        position: sticky;
+        top: 0;
+        left: 0;
         font-size: 3em;
         padding: 15px;
         cursor: pointer;
+        color: whitesmoke
     }
 }

@@ -1,0 +1,48 @@
+
+.signupComponent {
+    .signup-form {
+        .signup-form-element {
+            width: clamp(60%, 80%, 90%);
+            text-align: center;
+            border-radius: 20px;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: white;
+            padding: 1em;
+            margin: 1em;
+            border-bottom: 1px solid grey;
+        }
+        .signup-form-submitbtn {
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            &:hover {
+                transition: 0.5s;
+                background-color: crimson;
+                color: white;
+            }
+        }
+        .buttonDiv {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            text-align: center;
+        }
+    }
+    .signup-link {
+        background: none;
+        border: none;
+        color: white;
+        text-decoration: underline;
+        padding: 10px;
+    }
+    .signup-link:hover {
+            transition: .5s;
+            color: crimson
+    }
+    .error {
+        margin-bottom: auto;
+        color: red;
+    }
+}

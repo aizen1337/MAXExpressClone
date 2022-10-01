@@ -1,6 +1,18 @@
 .home {
+    background-color: rgba(0,0,0,0.8);
     display: flex;
+    height: 100vh;
+    .logo {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        right: 50%;
+    }
     .container {
-        display: grid;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
     }
 }

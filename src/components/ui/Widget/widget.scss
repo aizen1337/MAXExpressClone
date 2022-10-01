@@ -1,0 +1,13 @@
+.widget {
+    background-color: rgba(0,0,0,0.3);
+    width: 20vw;
+    aspect-ratio: 15/9;
+    margin: 1em;
+    padding: 1em;
+    border-radius: 10px;
+    display: flex;
+    .price { 
+        margin-left: auto;
+        margin-top: auto;
+    }
+}

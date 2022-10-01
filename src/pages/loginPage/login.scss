@@ -1,12 +1,24 @@
-.login {
+ .loginPage {
     display: flex;
-    width: 100%;
     background-color: rgba(0,0,0,0.8);
-    .container {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    .logo {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        right: 50%;
+    }
+ .login {
         margin: 0;
         padding: 0;
         display: flex;
-        width: 100%;
-
+        width: 90%;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
     }
 }
