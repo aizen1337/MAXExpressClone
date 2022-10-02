@@ -89,7 +89,17 @@ export function AuthProvider({children}) {
             console.log(error)
         })
     }
-
+    async function updateAvatar(url) {
+        updateProfile(currentUser, {
+            photoURL: url
+        })
+        .then(() => {
+            logOut()
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
     useEffect(() => {
        const unsubscribe = onAuthStateChanged(auth, user => {
             setCurrentUser(user)
@@ -107,7 +117,8 @@ export function AuthProvider({children}) {
         updateUserEmail,
         verifyEmail,
         resetPassword,
-        updateUsername
+        updateUsername,
+        updateAvatar
     }
     return (
         <AuthContext.Provider value={value}>
