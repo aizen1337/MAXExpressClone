@@ -1,13 +1,18 @@
 .widget {
-    background-color: rgba(0,0,0,0.3);
-    width: 20vw;
-    aspect-ratio: 15/9;
+    background-color: white;
+    height: 20vh;
     margin: 1em;
     padding: 1em;
     border-radius: 10px;
     display: flex;
-    .price { 
-        margin-left: auto;
-        margin-top: auto;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 50%;
+    text-decoration: none;
+    &:hover {
+        filter: brightness(50%);
+    }
+    .widgetTitle {
+        color: crimson
     }
 }

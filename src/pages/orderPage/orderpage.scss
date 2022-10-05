@@ -11,7 +11,12 @@
         text-align: center;
         align-items: center;
         padding-top: 2em;
-        .order--content {
+        .categories {
+            display: grid;
+            grid-template-columns: auto;
+            gap: 10px;
+        }
+        .categories-content {
             display: grid;
             grid-template-columns: auto auto auto;
             gap: 10px;

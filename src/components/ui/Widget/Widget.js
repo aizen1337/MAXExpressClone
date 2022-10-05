@@ -1,10 +1,16 @@
+import { Link } from "react-router-dom";
 import "./widget.scss"
-const Widget = ({name,price}) => {
+const Widget = ({name, imageURL , destination}) => {
   return (
-    <div className="widget">
-      <h4 className="widgetTitle">{name}</h4>
-      <p className="price">{price}</p>
+    <Link to={destination} style={{
+      textDecoration: 'none'
+    }}>
+    <div className="widget" style={{
+      backgroundImage: `url(${imageURL})`
+    }}>
+      <h1 className="widgetTitle">{name}</h1>
     </div>
+    </Link>
     );
 }
  
