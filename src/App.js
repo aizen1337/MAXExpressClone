@@ -7,9 +7,9 @@ import PrivateRoute from './context/auth/PrivateRoute';
 import AccountDetails from './pages/AccountDetails/AccountDetails';
 import { AuthProvider } from './context/auth/AuthContext';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
-import Burgers from './pages/orderPage/Burgers/Burgers';
-import Salads from './pages/orderPage/Salads/Salads';
-import Desserts from './pages/orderPage/Desserts/Desserts';
+import Burgers from './pages/Categories/Burgers/Burgers';
+import Salads from './pages/Categories/Salads/Salads';
+import Desserts from './pages/Categories/Desserts/Desserts';
 function App() {
   return (
     <BrowserRouter>
@@ -23,8 +23,8 @@ function App() {
           </Route>
           <Route path="/order" element={
             <PrivateRoute><OrderPage/></PrivateRoute>
-          }>
-            <Route path="burgers" element={<Burgers/>}>
+          }/>
+          <Route path="burgers" element={<Burgers/>}>
               <Route path=":id" element={<ProductDetails/>}/>
             </Route>
             <Route path="salads" element={<Salads/>}/>
@@ -33,7 +33,6 @@ function App() {
             <Route path="desserts" element={<Desserts/>}>
               <Route path=":id" element={<ProductDetails/>}/>
             </Route>
-          </Route>
           <Route path="/account-settings" index element={
             <PrivateRoute><AccountDetails/></PrivateRoute>
           }/>

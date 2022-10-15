@@ -88,6 +88,10 @@
         font-size: 3em;
         padding: 15px;
         cursor: pointer;
-        color: whitesmoke
+        color: whitesmoke;
+        &:hover {
+            color: crimson;
+            transition: .85s;
+        }
     }
 }
