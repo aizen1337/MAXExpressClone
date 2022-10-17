@@ -13,14 +13,13 @@ const Salads = () => {
     const [salads,setSalads] = useState([])
     const {currentUser} = useAuthentication()
     useEffect(() => {
-        const saladListener = onSnapshot(collection(db,"salads"), (snapshot) => {
+        onSnapshot(collection(db,"salads"), (snapshot) => {
             let data = []
             snapshot.forEach((doc) => {
               data.push({
                 id: doc.id,
                 ...doc.data()
               })
-              console.log(doc)
             })
             setSalads(data)
           })
@@ -32,7 +31,7 @@ const Salads = () => {
           <ShoppingCart/>
           <div className="elements">
           { salads.map((doc) => (
-        <Widget destination={doc.id} name={doc.name} imageURL={doc.photoURL} key={doc.id}/>
+        <Widget destination={doc.id} name={doc.name} imageURL={doc.photoURL} price={doc.price} key={doc.id}/>
             )) }
           </div>
     </div> 

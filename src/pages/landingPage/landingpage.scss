@@ -7,6 +7,7 @@
         top: 0;
         left: 50%;
         right: 50%;
+        z-index: 1;
     }
     .container {
         display: flex;
@@ -14,5 +15,102 @@
         align-items: center;
         text-align: center;
         color: white;
+        .arrow {
+            margin-top: 75vh;
+            z-index: 100;
+            font-size: 5em;
+            bottom: 0;
+            color:  crimson;
+            cursor: pointer;
+            &:hover {
+                -webkit-animation: swing 1s ease;
+                animation: swing 1s ease;
+                -webkit-animation-iteration-count: 1;
+                animation-iteration-count: 1;
+            }
+        }
+    }
+    .navbar {
+        width: 100%;
+        position: absolute;
+        left: 45%;
+        right: 50%;
+        top: 50%;
+        bottom: 50%;
+        background-color: rgba;
+        li {
+            list-style-type: none;
+            a {
+                font-size: 3em;
+                color: crimson;
+                text-decoration: none;
+            }
+        }
+    }
+}
+@-webkit-keyframes swing
+{
+    15%
+    {
+        -webkit-transform: translateX(5px);
+        transform: translateX(5px);
+    }
+    30%
+    {
+        -webkit-transform: translateX(-5px);
+       transform: translateX(-5px);
+    } 
+    50%
+    {
+        -webkit-transform: translateX(3px);
+        transform: translateX(3px);
+    }
+    65%
+    {
+        -webkit-transform: translateX(-3px);
+        transform: translateX(-3px);
+    }
+    80%
+    {
+        -webkit-transform: translateX(2px);
+        transform: translateX(2px);
+    }
+    100%
+    {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+@keyframes swing
+{
+    15%
+    {
+        -webkit-transform: translateX(5px);
+        transform: translateX(5px);
+    }
+    30%
+    {
+        -webkit-transform: translateX(-5px);
+        transform: translateX(-5px);
+    }
+    50%
+    {
+        -webkit-transform: translateX(3px);
+        transform: translateX(3px);
+    }
+    65%
+    {
+        -webkit-transform: translateX(-3px);
+        transform: translateX(-3px);
+    }
+    80%
+    {
+        -webkit-transform: translateX(2px);
+        transform: translateX(2px);
+    }
+    100%
+    {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
     }
 }

@@ -1,0 +1,20 @@
+.categoryWidget {
+    background-color: white;
+    height: 20vh;
+    margin: 1.5em;
+    border-radius: 10px;
+    display: flex;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 50%;
+    text-decoration: none;
+    &:hover {
+        filter: brightness(50%);
+        transition: 850ms;
+    }
+    .categoryWidgetTitle {
+        color: crimson;
+        padding: 1em;
+        text-decoration: none;
+    }
+}

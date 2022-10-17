@@ -6,7 +6,7 @@
     display: flex;
     background-repeat: no-repeat;
     background-position: right;
-    background-size: 50%;
+    background-size: 30%;
     text-decoration: none;
     .widgetTitle {
         color: crimson;
@@ -14,18 +14,24 @@
     }
     .bottom-panel {
         margin-top: auto;
-        width: 100%;
+        margin-left: auto;
+        width: 50%;
         height: 100%;
         display: flex;
         justify-content: space-evenly;
         align-items: center;
         text-align: center;
+        float: right;
         background-color: rgba(0,0,0,0.5);
-        z-index: 100;
-        border-radius: 10px;
+        border-radius: 0 10px 10px 0;
+        .price {
+            color: white;
+            font-size: 1.5em;
+        }
         .icon {
             font-size: 2em;
             color: white;
+            cursor: pointer;
             &:hover {
                 color: crimson;
                 transition: 850ms;
