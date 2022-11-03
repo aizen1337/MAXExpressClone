@@ -6,7 +6,7 @@ import React from 'react'
 import Sidebar from '../../../components/Sidebar/Sidebar'
 import { useAuthentication } from '../../../context/auth/AuthContext'
 import {BiLeftArrowAlt} from 'react-icons/bi'
-import { Link } from 'react-router-dom'
+import { Link,Outlet } from 'react-router-dom'
 import "../categories.scss"
 import ShoppingCart from '../../../components/ShoppingCart/ShoppingCart'
 const Salads = () => {
@@ -25,6 +25,7 @@ const Salads = () => {
           })
     })
     return (
+    <>
     <div className="categories-content">
           <Sidebar userData={currentUser}/>
           <Link to="/order"><BiLeftArrowAlt className="arrow"/></Link>
@@ -35,6 +36,8 @@ const Salads = () => {
             )) }
           </div>
     </div> 
+    <Outlet/>
+    </>
     );
 }
  

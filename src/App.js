@@ -20,22 +20,22 @@ function App() {
           </Route>
           <Route path="/login">
             <Route index element={<LoginPage/>}/>
-          </Route>
-          <Route path="/order" element={
-            <PrivateRoute><OrderPage/></PrivateRoute>
-          }/>
-          <Route path="burgers" element={<Burgers/>}>
-              <Route path=":id" element={<ProductDetails/>}/>
             </Route>
-            <Route path="salads" element={<Salads/>}/>
-              <Route path=":id" element={<ProductDetails/>}>
+            <Route path="/order" element={
+              <PrivateRoute><OrderPage/></PrivateRoute>
+            }/>
+            <Route path="/burgers"  element={<Burgers/>} exact>
             </Route>
-            <Route path="desserts" element={<Desserts/>}>
-              <Route path=":id" element={<ProductDetails/>}/>
+            <Route path="/burgers/:id" element={<ProductDetails/>} exact></Route>
+            <Route path="/salads"  element={<Salads/>} exact>
             </Route>
-          <Route path="/account-settings" index element={
+            <Route path="/salads/:id" element={<ProductDetails/>} exact></Route>
+            <Route path="/desserts" element={<Desserts/>} exact>
+            </Route>
+            <Route path="/desserts/:id" element={<ProductDetails/>} exact></Route>
+            <Route path="/account-settings" element={
             <PrivateRoute><AccountDetails/></PrivateRoute>
-          }/>
+            }/>
            <Route path="*">
             <Route index element={<NotFoundPage/>}/>
           </Route>

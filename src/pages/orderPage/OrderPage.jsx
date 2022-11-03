@@ -3,9 +3,11 @@ import { AuthProvider, useAuthentication} from '../../context/auth/AuthContext'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import CategoryWidget from '../../components/ui/CategoryWidget/CategoryWidget'
 import "./orderpage.scss"
+import { Outlet } from 'react-router-dom'
 const OrderPage = () => {
     const { currentUser} = useAuthentication()
       return (
+      <>
       <AuthProvider>
       <div className="order">
         <Sidebar userData={currentUser}/>
@@ -19,6 +21,8 @@ const OrderPage = () => {
         </div>
       </div>
       </AuthProvider>
+      <Outlet/>
+      </>
   )
 }
 

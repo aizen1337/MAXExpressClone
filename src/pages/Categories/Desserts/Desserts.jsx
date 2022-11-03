@@ -7,7 +7,7 @@ import Sidebar from '../../../components/Sidebar/Sidebar'
 import { useAuthentication } from '../../../context/auth/AuthContext'
 import "../categories.scss"
 import {BiLeftArrowAlt} from 'react-icons/bi'
-import { Link } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import ShoppingCart from '../../../components/ShoppingCart/ShoppingCart'
 const Desserts = () => {
     const {currentUser} = useAuthentication()
@@ -37,6 +37,7 @@ const Desserts = () => {
       )) }
     </div>
     </div>
+    <Outlet/>
     </> 
     );
 }
