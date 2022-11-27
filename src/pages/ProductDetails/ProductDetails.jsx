@@ -6,6 +6,8 @@ import { useAuthentication } from "../../context/auth/AuthContext";
 import {AiOutlineShoppingCart} from 'react-icons/ai'
 import { db } from "../../firebase/firebase";
 import "./productdetails.scss";
+import Arrow from "../../components/ui/Arrow/Arrow";
+import ShoppingCart from "../../components/ShoppingCart/ShoppingCart";
 const ProductDetails = () => {
     const {currentUser} = useAuthentication()
     const [data,setData] = useState()
@@ -24,6 +26,8 @@ const ProductDetails = () => {
         <>
         <div className="productDetails">
             <Sidebar userData={currentUser}/>
+            <Arrow/>
+            <ShoppingCart/>
             <div className="content">
                 {data &&
                 <>

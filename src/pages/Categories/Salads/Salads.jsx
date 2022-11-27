@@ -8,6 +8,7 @@ import { useAuthentication } from '../../../context/auth/AuthContext'
 import {BiLeftArrowAlt} from 'react-icons/bi'
 import { Link,Outlet } from 'react-router-dom'
 import "../categories.scss"
+import Arrow from '../../../components/ui/Arrow/Arrow'
 import ShoppingCart from '../../../components/ShoppingCart/ShoppingCart'
 const Salads = () => {
     const [salads,setSalads] = useState([])
@@ -28,7 +29,7 @@ const Salads = () => {
     <>
     <div className="categories-content">
           <Sidebar userData={currentUser}/>
-          <Link to="/order"><BiLeftArrowAlt className="arrow"/></Link>
+          <Arrow/>
           <ShoppingCart/>
           <div className="elements">
           { salads.map((doc) => (

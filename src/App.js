@@ -10,15 +10,18 @@ import ProductDetails from './pages/ProductDetails/ProductDetails';
 import Burgers from './pages/Categories/Burgers/Burgers';
 import Salads from './pages/Categories/Salads/Salads';
 import Desserts from './pages/Categories/Desserts/Desserts';
+import ShoppingCartPage from './pages/ShoppingCartPage/ShoppingCartPage';
+import { ShoppingCartProvider } from './context/shoppingcart/ShoppingCartContext';
 function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>    
+      <AuthProvider>
+        <ShoppingCartProvider>
         <Routes>
           <Route path="/">
             <Route index element={<LandingPage/>}/>
           </Route>
-          <Route path="/login">
+            <Route path="/login">
             <Route index element={<LoginPage/>}/>
             </Route>
             <Route path="/order" element={
@@ -36,10 +39,14 @@ function App() {
             <Route path="/account-settings" element={
             <PrivateRoute><AccountDetails/></PrivateRoute>
             }/>
+            <Route path="/shopping-cart">
+            <Route index element={<ShoppingCartPage/>}/>
+            </Route>
            <Route path="*">
             <Route index element={<NotFoundPage/>}/>
           </Route>
           </Routes>
+          </ShoppingCartProvider>    
     </AuthProvider>
   </BrowserRouter>
   );

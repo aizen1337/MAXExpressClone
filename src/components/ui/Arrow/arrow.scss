@@ -1,0 +1,11 @@
+.arrow {
+    position: absolute;
+    left: 0;
+    font-size: 5rem;
+    margin-top: 5rem;
+    color: white;
+    &:hover {
+        color: crimson;
+        transition: .85s;
+    }
+}
