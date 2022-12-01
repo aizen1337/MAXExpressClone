@@ -1,11 +1,10 @@
-import React, {useRef, useState} from 'react'
+import React, {useRef} from 'react'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import Logo from '../../components/ui/Logo/Logo'
 import "./landingpage.scss"
 import { useAuthentication } from '../../context/auth/AuthContext';
 import {Parallax, ParallaxLayer} from '@react-spring/parallax'
 import {BsChevronDoubleDown, BsChevronDoubleUp} from 'react-icons/bs'
-import { Link } from 'react-router-dom';
 export default function LandingPage() {
   const ref = useRef();
   const {currentUser} = useAuthentication()
@@ -22,8 +21,8 @@ export default function LandingPage() {
               backgroundSize: 'cover'
             }}>
               <div className='arrow' onClick={() => ref.current.scrollTo(1)}>
-              <i><BsChevronDoubleDown/></i>
-              <h2>Do poruszania się po stronie użyj menu w lewym górnym rogu<br/> lub tego po kliknięciu w strzałkę</h2>
+                  <i><BsChevronDoubleDown/></i>
+                  <h2>Do poruszania się po stronie użyj menu w lewym górnym rogu<br/> lub tego po kliknięciu w strzałkę</h2>
               </div>
             </ParallaxLayer>
             <ParallaxLayer offset={1} speed={0.5}  style={{

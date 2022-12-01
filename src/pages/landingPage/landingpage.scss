@@ -16,10 +16,12 @@
         text-align: center;
         color: white;
         .arrow {
+            position: absolute;
+            width: 100%;
+            align-self: center;
             margin-top: 75vh;
             z-index: 100;
             font-size: 5em;
-            bottom: 0;
             color:  crimson;
             cursor: pointer;
             &:hover {

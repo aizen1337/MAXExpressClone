@@ -8,6 +8,7 @@ const Widget = ({name, imageURL , destination, price,item}) => {
   const [open,setOpen] = useState(false)
   const {addItem} = useShoppingCart();
   const addToShoppingCart = (item) => {
+    alert("Dodano do zamówienia!")
     addItem(item)
   }
   return (

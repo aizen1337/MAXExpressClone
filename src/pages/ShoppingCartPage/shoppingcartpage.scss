@@ -1,6 +1,6 @@
 .shopping-cart-page {
     display: flex;
-    height: 100vh;
+    height: max-content;
     background-color: rgba(0,0,0,0.8);
     justify-content: center;
     width: 100%;
@@ -10,6 +10,7 @@
         align-items: center;
         justify-content: center;
         text-align: center;
+        flex-direction: column;
         width: 100%;
         .title {
             color: white;

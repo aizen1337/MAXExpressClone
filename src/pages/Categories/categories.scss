@@ -15,10 +15,10 @@
         height: fit-content;
         width: 90%;
     }
-    @media all and (max-width: 600px) {
-        height: max-content;
+    @media (max-width: 768px) {
+        height: 125vh;        
         .elements {
-            width: 75%;
+            width: 80%;
             float: right;
             display: block;
         }

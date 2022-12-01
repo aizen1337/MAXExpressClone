@@ -5,8 +5,7 @@ import Widget from '../../../components/ui/Widget/Widget'
 import React from 'react'
 import Sidebar from '../../../components/Sidebar/Sidebar'
 import { useAuthentication } from '../../../context/auth/AuthContext'
-import {BiLeftArrowAlt} from 'react-icons/bi'
-import { Link,Outlet } from 'react-router-dom'
+import {Outlet } from 'react-router-dom'
 import "../categories.scss"
 import Arrow from '../../../components/ui/Arrow/Arrow'
 import ShoppingCart from '../../../components/ShoppingCart/ShoppingCart'
@@ -33,7 +32,7 @@ const Salads = () => {
           <ShoppingCart/>
           <div className="elements">
           { salads.map((doc) => (
-        <Widget destination={doc.id} name={doc.name} imageURL={doc.photoURL} price={doc.price} key={doc.id}/>
+        <Widget destination={doc.id} item={doc} name={doc.name} imageURL={doc.photoURL} price={doc.price} key={doc.id}/>
             )) }
           </div>
     </div> 

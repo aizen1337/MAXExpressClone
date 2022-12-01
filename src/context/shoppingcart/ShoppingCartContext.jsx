@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext} from "react";
 import { useContext } from "react";
 import useLocalStorage from '../../hooks/useLocalStorage';
 const ShoppingCartContext = createContext({})
@@ -7,6 +7,7 @@ export function useShoppingCart() {
 }
 export function ShoppingCartProvider({children}) {
     const [shoppingCartItems,setShoppingCartItems] = useLocalStorage("shoppingcart",[]);
+    const [total,setTotal] = useLocalStorage("total",0)
     const addItem = (item) => {
         const itemId = shoppingCartItems.length > 0 ? Math.max(...shoppingCartItems.map((item) => item.id)) + 1 : 0;
         const newItem = 
@@ -27,12 +28,23 @@ export function ShoppingCartProvider({children}) {
         setShoppingCartItems([])
         return shoppingCartItems;
     }
+    const calculateTotal = () => {
+        let currentTotal = 0
+        shoppingCartItems.forEach((element) => {
+           currentTotal += Number(element.item.price)
+        })
+        setTotal(Number(currentTotal))
+        return total
+    }
     const shoppingCartValue = {
         shoppingCartItems,
         addItem,
         getShoppingCartLength,
         removeItem,
-        resetShoppingCart
+        resetShoppingCart,
+        calculateTotal,
+        total,
+        setTotal
     }
     return ( 
     <ShoppingCartContext.Provider value={shoppingCartValue}>
