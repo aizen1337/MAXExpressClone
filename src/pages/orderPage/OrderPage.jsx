@@ -4,6 +4,7 @@ import Sidebar from '../../components/Sidebar/Sidebar'
 import CategoryWidget from '../../components/ui/CategoryWidget/CategoryWidget'
 import "./orderpage.scss"
 import { Outlet } from 'react-router-dom'
+import ShoppingCart from '../../components/ShoppingCart/ShoppingCart'
 const OrderPage = () => {
     const { currentUser} = useAuthentication()
       return (
@@ -11,6 +12,7 @@ const OrderPage = () => {
       <AuthProvider>
       <div className="order">
         <Sidebar userData={currentUser}/>
+        <ShoppingCart/>
         <div className="container">
             <h1 className='title'>Witaj, {currentUser.displayName}. Na co masz dziś ochotę?</h1>
               <div className="categories">

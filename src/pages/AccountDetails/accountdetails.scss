@@ -35,6 +35,9 @@
                 padding: 15px;
                 display: flex;
                 justify-content: space-between;
+                h4 {
+                    color: green;
+                }
                 p {
                     font-size: larger;
                 }
@@ -91,24 +94,20 @@
                     color: white;
             }
         }
-        }
-        .menu {
-            position: sticky;
-            top: 0;
-            right: 0;
-            z-index: 100;
-            float: right;
-            display: initial;
-            position: absolute;
-            .bars {
-                position: sticky;
-                top: 0;
-                right: 0;
-                float: right;
-                font-size: 3em;
-                cursor: pointer;
-                color: whitesmoke
-            }
-        }
+    }
+}
+}
+@media (max-width: 768px) {
+    .account-details {
+    width: 100%;
+    height: 100vh;
+    .user-info {
+        padding: 0;
+        width: 100%;
+        height: max-content;
+        .manage-user {
+            width: 100%;
+    }
+    }
     }
 }

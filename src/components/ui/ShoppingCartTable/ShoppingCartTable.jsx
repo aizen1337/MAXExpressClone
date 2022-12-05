@@ -16,14 +16,16 @@ const ShoppingCartTable = () => {
         return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
       });
     const navigate = useNavigate();
-    const {shoppingCartItems, resetShoppingCart,getShoppingCartLength, calculateTotal, setTotal} = useShoppingCart();
+    const {shoppingCartItems, resetShoppingCart,getShoppingCartLength, removeItem, calculateTotal, setTotal} = useShoppingCart();
     const {currentUser} = useAuthentication();
     const [open, setOpen] = useState(false);
+    const [resetOpen, setResetOpen] = useState(false);
     const [orderId,setOrderId] = useState(0)
-    const handleClose = (event, reason) => {
+    const handleClose = (reason) => {
       if (reason === 'clickaway') {
         return;
       }
+      setResetOpen(false)
       setOpen(false);
     };
     function getRandomIntInclusive(min, max) {
@@ -33,7 +35,7 @@ const ShoppingCartTable = () => {
       }
     const sendOrder = async () => {
         setOrderId(getRandomIntInclusive(7000,7999))
-        const docRef = await addDoc(collection(db,"orders"), {
+        await addDoc(collection(db,"orders"), {
             orderTotal: calculateTotal(),
             orderNumber: orderId,
             orderDetails: shoppingCartItems,
@@ -51,10 +53,12 @@ const ShoppingCartTable = () => {
         .catch((error) => console.log(error))  
     }
     const resetHandler = () => {
-        alert("Anulowano zamówienie!");
-        resetShoppingCart();
-        setTotal(0)
-        navigate('/order');
+        setResetOpen(true)
+        setTimeout(() => {
+            resetShoppingCart();
+            setTotal(0)
+            navigate('/order');
+        },3000)
     }
     const checkoutHandler = () => {
         sendOrder()
@@ -62,10 +66,17 @@ const ShoppingCartTable = () => {
     console.log(shoppingCartItems)
     useEffect(() => {
         calculateTotal()
-    },[])
+    },[calculateTotal])
   return (
     <>
     <div className='table'>
+    {
+        resetOpen && 
+            <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                <h2>Anulowano twoje zamówienie!</h2>
+                <h3>Nastąpi przekierowanie...</h3>
+            </Alert>
+    }
         {
         getShoppingCartLength() > 0 ? (
             shoppingCartItems && shoppingCartItems.map((shoppingCartItem) => (
@@ -75,7 +86,7 @@ const ShoppingCartTable = () => {
                         <h2 className='price'>{shoppingCartItem.item.price},00 zł</h2>
                     </div>
                     <div className="action-buttons">
-                        <div className="item">Usuń <DeleteOutlineOutlinedIcon className='icon'/></div>
+                        <div className="item" onClick={() => removeItem(shoppingCartItem.id)}>Usuń <DeleteOutlineOutlinedIcon className='icon'/></div>
                         <div className="item">Szczegóły <SearchOutlinedIcon className='icon'/></div>
                       
                     </div>
@@ -94,12 +105,12 @@ const ShoppingCartTable = () => {
             <h3>Nastąpi przekierowanie...</h3>
         </Alert>
         </Snackbar>
-    }
+    } 
      <div className="buttons">
         <div className="reset-button" onClick={() => resetHandler()}>
         <h6>Anuluj zamówienie <CancelOutlinedIcon/></h6>
         </div>
-        <div className="checkout-button" onClick={() => {checkoutHandler()}}>
+        <div className="checkout-button" onClick={() => checkoutHandler()}>
         <h6>Przejdź do płatności <LocalAtmOutlinedIcon/></h6>
         </div>
     </div>

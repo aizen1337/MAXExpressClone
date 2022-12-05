@@ -1,6 +1,7 @@
 .widget {
     background-color: white;
     height: 20vh;
+    width: 40vw;
     margin: 1.5em;
     border-radius: 10px;
     display: flex;
@@ -15,7 +16,7 @@
     .bottom-panel {
         margin-top: auto;
         margin-left: auto;
-        width: 50%;
+        width: 120%;
         height: 100%;
         display: flex;
         justify-content: space-evenly;
@@ -41,4 +42,19 @@
     .hidden {
         visibility: hidden;
     }
+}
+@media screen and (max-width: 768px) {
+    .widget {
+    height: 30vh;
+    width: 70vw;
+    .widgetTitle {
+        position: absolute;
+    }
+    .bottom-panel {
+        width: 100%;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    }
+
 }

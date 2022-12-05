@@ -15,11 +15,11 @@ const Widget = ({name, imageURL , destination, price,item}) => {
       <div className="widget" onMouseOver={() => setOpen(true)} onMouseOut={() => setOpen(false)} style={{
         backgroundImage: `url(${imageURL})`
       }}>
-        <h1 className="widgetTitle">{name}</h1>
+        <h1 className={!open ? "widgetTitle" : 'hidden'}>{name}</h1>
         <div className={open ? "bottom-panel" : 'hidden'}>
-          <h6>
+          <h6 onClick={() => addToShoppingCart(item)}>
           Dodaj do zamówienia
-          <TbShoppingCartPlus className="icon" onClick={(e) => addToShoppingCart(item)}/>
+          <TbShoppingCartPlus className="icon" />
           </h6>
             <h2 className="price">{price},00 zł</h2>
           <Tooltip tooltipContent={"Dowiedz się więcej"} child={<Link to={destination} style={{

@@ -111,7 +111,7 @@ const AccountDetails = () => {
             </div>           
             <div className='manage-user-element'>
               <p>Czy email został zweryfikowany:</p> 
-              <p>{currentUser.emailVerified ? "Zweryfikowany" : <button className='link' onClick={verifyEmailHandler}>Zweryfikuj adres email</button>}</p>
+              <p>{currentUser.emailVerified ? <h4>Zweryfikowany</h4> : <button className='link' onClick={verifyEmailHandler}>Zweryfikuj adres email</button>}</p>
             </div>
             <div className='manage-user-element'>
               <p>Konto od: </p>
