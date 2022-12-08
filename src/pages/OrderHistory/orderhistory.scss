@@ -5,13 +5,13 @@
     justify-content: center;
     width: 100%;
     .content {
-        height: 100vh;
+        height: max-content;
         display: flex;
         align-items: center;
-        justify-content: center;
         text-align: center;
         flex-direction: column;
         width: 100%;
+        padding: 1em;
         .title {
             color: white;
             display: block;
@@ -25,7 +25,16 @@
         .orders {
             display: grid;
             grid-template-columns: auto auto auto auto;
-            gap: 2em;
+            gap: 1em;
+        }
+    }
+    @media screen and (max-width: 768px) {
+        .content {
+        height: max-content;
+            .orders {
+            margin-top: 2em;
+            grid-template-columns: auto auto;
+            }   
         }
     }
 }

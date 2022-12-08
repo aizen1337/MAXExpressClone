@@ -1,4 +1,4 @@
-import { collection, onSnapshot,query,where } from 'firebase/firestore'
+import { collection, onSnapshot,orderBy,query,where } from 'firebase/firestore'
 import React from 'react'
 import { useEffect, useState } from 'react'
 import {Link} from 'react-router-dom'
@@ -11,7 +11,7 @@ const OrderHistory = () => {
     const { currentUser } = useAuthentication();
     const [orders,setOrders] = useState([]);
     const getOrders = async () => {
-        const usersOrders = query(collection(db, "orders"), where("orderOwner", "==", currentUser.uid))
+        const usersOrders = query(collection(db, "orders"), where("orderOwner", "==", currentUser.uid), orderBy("orderTimestamp","desc"))
         onSnapshot(usersOrders, (querySnapshot) => {
             let orders = []
             querySnapshot.docs.forEach((doc) => {

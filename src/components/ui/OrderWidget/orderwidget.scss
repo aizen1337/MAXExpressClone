@@ -3,6 +3,8 @@
     border-radius: 10px;
     color: black;
     padding: 1em;
+    width: clamp(10vw, 15vw,20vw);
+    height: clamp(20vh, 30vh,40vh);
     box-shadow: 0 0 0 0 rgba(0, 255, 0, 1);
 	transform: scale(1);
 	animation: pulse 1s infinite;
@@ -26,5 +28,11 @@
         .name {
             color: crimson;
         }
+    }
+}
+@media screen and (max-width: 768px) {
+    .orderWidget {
+        width: 40vw;
+        height: 40vw;
     }
 }
