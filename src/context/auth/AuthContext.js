@@ -14,8 +14,7 @@ export function AuthProvider({children}) {
                 setCurrentUser(user);
                 redirect("/order")
             }).catch((error) => {
-                console.log(error)
-                setAuthError(error)
+                setAuthError(error.code)
             });
     }
     async function signup(email, password, username) {
@@ -26,8 +25,7 @@ export function AuthProvider({children}) {
                 user.displayName = username
                 redirect("/order")
             }).catch((error) => {
-                console.log(error)
-                setAuthError(error)
+                setAuthError(error.code)
             });
     }
     async function signIn(email, password) {
@@ -37,8 +35,7 @@ export function AuthProvider({children}) {
                 setCurrentUser(user);
                 redirect("/order")
             }).catch((error) => {
-                console.log(error)
-                setAuthError(error)
+                setAuthError(error.code)
             });
     }
     async function logOut() {
@@ -48,7 +45,6 @@ export function AuthProvider({children}) {
             redirect("/")
         })
         .catch((error) => {
-            console.log(error)
             setAuthError(error)
         })
     }
@@ -58,7 +54,7 @@ export function AuthProvider({children}) {
             logOut()
         })
         .catch((error) => {
-            console.log(error)
+            setAuthError(error)
         })
     }
     async function verifyEmail() {
@@ -66,7 +62,7 @@ export function AuthProvider({children}) {
         .then(() => {
         })
         .catch((error) => {
-            console.log(error)
+            setAuthError(error)
         })
     }
     async function resetPassword() {
@@ -75,7 +71,7 @@ export function AuthProvider({children}) {
             console.log("Message sent!")
         })
         .catch((error) => {
-            console.log(error)
+            setAuthError(error)
         })
     }
     async function updateUsername(username) {
@@ -86,7 +82,7 @@ export function AuthProvider({children}) {
             logOut()
         })
         .catch((error) => {
-            console.log(error)
+            setAuthError(error)
         })
     }
     async function updateAvatar(url) {
@@ -97,13 +93,13 @@ export function AuthProvider({children}) {
             logOut()
         })
         .catch((error) => {
-            console.log(error)
+            setAuthError(error)
         })
     }
     useEffect(() => {
        const unsubscribe = onAuthStateChanged(auth, user => {
             setCurrentUser(user)
-           })
+          })
         return unsubscribe
     }, [])
     
@@ -113,12 +109,12 @@ export function AuthProvider({children}) {
         logOut,
         signup,
         signIn,
-        authError,
         updateUserEmail,
         verifyEmail,
         resetPassword,
         updateUsername,
-        updateAvatar
+        updateAvatar,
+        authError
     }
     return (
         <AuthContext.Provider value={value}>

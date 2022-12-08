@@ -2,17 +2,15 @@ import React, {useRef} from 'react'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import Logo from '../../components/ui/Logo/Logo'
 import "./landingpage.scss"
-import { useAuthentication } from '../../context/auth/AuthContext';
 import {Parallax, ParallaxLayer} from '@react-spring/parallax'
 import {BsChevronDoubleDown, BsChevronDoubleUp} from 'react-icons/bs'
 export default function LandingPage() {
   const ref = useRef();
-  const {currentUser} = useAuthentication()
   const url = "https://silesiasmakuje.pl/wp-content/uploads/2018/12/20181220_200635.jpg"
   const url2 = "https://omnichannelnews.pl/wp-content/uploads/2021/12/max-premium-burgers-restauracja-gdansk.jpg"
     return (
     <div className='home'>
-      <Sidebar userData={currentUser}/>
+      <Sidebar/>
       <div className='logo'><Logo/></div>
         <div className='container'>
           <Parallax pages={2} ref={ref}>

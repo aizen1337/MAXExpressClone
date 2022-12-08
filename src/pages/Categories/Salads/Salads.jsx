@@ -4,14 +4,12 @@ import { useEffect, useState } from 'react'
 import Widget from '../../../components/ui/Widget/Widget'
 import React from 'react'
 import Sidebar from '../../../components/Sidebar/Sidebar'
-import { useAuthentication } from '../../../context/auth/AuthContext'
 import {Outlet } from 'react-router-dom'
 import "../categories.scss"
 import Arrow from '../../../components/ui/Arrow/Arrow'
 import ShoppingCart from '../../../components/ShoppingCart/ShoppingCart'
 const Salads = () => {
     const [salads,setSalads] = useState([])
-    const {currentUser} = useAuthentication()
     useEffect(() => {
         onSnapshot(collection(db,"salads"), (snapshot) => {
             let data = []
@@ -27,7 +25,7 @@ const Salads = () => {
     return (
     <>
     <div className="categories-content">
-          <Sidebar userData={currentUser}/>
+          <Sidebar/>
           <Arrow/>
           <ShoppingCart/>
           <div className="elements">

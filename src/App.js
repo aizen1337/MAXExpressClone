@@ -12,6 +12,7 @@ import Salads from './pages/Categories/Salads/Salads';
 import Desserts from './pages/Categories/Desserts/Desserts';
 import ShoppingCartPage from './pages/ShoppingCartPage/ShoppingCartPage';
 import { ShoppingCartProvider } from './context/shoppingcart/ShoppingCartContext';
+import OrderHistory from './pages/OrderHistory/OrderHistory';
 function App() {
   return (
     <BrowserRouter>
@@ -40,7 +41,10 @@ function App() {
             <PrivateRoute><AccountDetails/></PrivateRoute>
             }/>
             <Route path="/shopping-cart">
-            <Route index element={<ShoppingCartPage/>}/>
+            <Route index element={<PrivateRoute><ShoppingCartPage/></PrivateRoute>}/>
+            </Route>
+            <Route path="/order-history">
+            <Route index element={<OrderHistory/>}/>
             </Route>
            <Route path="*">
             <Route index element={<NotFoundPage/>}/>

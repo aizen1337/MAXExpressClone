@@ -30,7 +30,6 @@ const AccountDetails = () => {
   const [usernamePromptOpen,setUsernamePromptOpen] = useState(false)
   useEffect(() => {
     const uploadFile = () =>{
-        const name = new Date().getTime() + file.name
         const storageRef = ref(storage,file.name)
             const uploadTask = uploadBytesResumable(storageRef, file);
             uploadTask.on('state_changed', 
@@ -69,7 +68,7 @@ const AccountDetails = () => {
 })
   return (
     <div className='account-details'>
-      <Sidebar userData={currentUser}/>
+      <Sidebar/>
       <div className={usernamePromptOpen ? "fullscreenInput" : "disabled"}>
         <div className="menu" onClick={() => setUsernamePromptOpen(false)}>
             <i className='bars'><VscChromeClose /></i>

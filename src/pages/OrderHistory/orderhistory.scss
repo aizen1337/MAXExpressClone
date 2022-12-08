@@ -1,0 +1,31 @@
+.orderhistory {
+    display: flex;
+    height: max-content;
+    background-color: rgba(0,0,0,0.8);
+    justify-content: center;
+    width: 100%;
+    .content {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+        width: 100%;
+        .title {
+            color: white;
+            display: block;
+            text-align: center;
+            align-items: center;
+            a {
+                text-decoration: none;
+                color: crimson;
+            }
+        }
+        .orders {
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            gap: 2em;
+        }
+    }
+}

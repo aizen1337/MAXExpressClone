@@ -6,21 +6,33 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import LocalAtmOutlinedIcon from '@mui/icons-material/LocalAtmOutlined';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { useNavigate } from 'react-router-dom';
-import {collection,addDoc, serverTimestamp} from 'firebase/firestore';
+import {collection,addDoc, serverTimestamp, query, orderBy,limit, onSnapshot} from 'firebase/firestore';
 import {db} from '../../../firebase/firebase'
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import "./shoppingcarttable.scss";
 const ShoppingCartTable = () => {
+    const navigate = useNavigate();
+    const {shoppingCartItems, resetShoppingCart,getShoppingCartLength, removeItem,total, setTotal} = useShoppingCart();
+    const {currentUser} = useAuthentication();
+    const [open, setOpen] = useState(false);
+    const [orderId,setOrderId] = useState();
+    const [resetOpen, setResetOpen] = useState(false);
+    useEffect(() => {
+        onSnapshot(query(collection(db, "orders"), orderBy("orderNumber","desc"), limit(1)), (doc) => {
+            if(doc.docs[0].data().orderNumber < 8000) {
+            var highestOrderNumber =  doc.docs[0].data().orderNumber + 1
+            setOrderId(highestOrderNumber)
+            }
+            else {
+            highestOrderNumber = 7000;
+            setOrderId(highestOrderNumber)
+            }
+        })
+    },[])
     const Alert = React.forwardRef(function Alert(props, ref) {
         return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
       });
-    const navigate = useNavigate();
-    const {shoppingCartItems, resetShoppingCart,getShoppingCartLength, removeItem, calculateTotal, setTotal} = useShoppingCart();
-    const {currentUser} = useAuthentication();
-    const [open, setOpen] = useState(false);
-    const [resetOpen, setResetOpen] = useState(false);
-    const [orderId,setOrderId] = useState(0)
     const handleClose = (reason) => {
       if (reason === 'clickaway') {
         return;
@@ -28,15 +40,9 @@ const ShoppingCartTable = () => {
       setResetOpen(false)
       setOpen(false);
     };
-    function getRandomIntInclusive(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min + 1) + min);
-      }
     const sendOrder = async () => {
-        setOrderId(getRandomIntInclusive(7000,7999))
         await addDoc(collection(db,"orders"), {
-            orderTotal: calculateTotal(),
+            orderTotal: total,
             orderNumber: orderId,
             orderDetails: shoppingCartItems,
             orderOwner: currentUser.uid,
@@ -44,7 +50,6 @@ const ShoppingCartTable = () => {
         }).then(() => {
          setOpen(true)
          setTimeout(() => {
-            setOrderId(0)
             setTotal(0)  
             resetShoppingCart();
          },5000)
@@ -63,22 +68,20 @@ const ShoppingCartTable = () => {
     const checkoutHandler = () => {
         sendOrder()
     }
-    console.log(shoppingCartItems)
-    useEffect(() => {
-        calculateTotal()
-    },[calculateTotal])
   return (
     <>
-    <div className='table'>
     {
         resetOpen && 
-            <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+            <Alert onClose={handleClose} severity="error" sx={{ width: '80%' }}>
                 <h2>Anulowano twoje zamówienie!</h2>
                 <h3>Nastąpi przekierowanie...</h3>
             </Alert>
     }
         {
-        getShoppingCartLength() > 0 ? (
+        getShoppingCartLength() > 0 ? 
+            <>
+            <div className='table'>
+            {
             shoppingCartItems && shoppingCartItems.map((shoppingCartItem) => (
                 <div className="shoppingCartItem" key={shoppingCartItem.id}>
                     <div className="properties">
@@ -92,16 +95,18 @@ const ShoppingCartTable = () => {
                     </div>
                     <img className="image" src={shoppingCartItem.item.photoURL} alt="Zdjęcie produktu"/>
                 </div>
-            )))
+            ))
+            }
+            </div>
+            </>
         : <h1 className='heading'>Twoje zamówienie wygląda na puste</h1>
      }
-    </div>
     { getShoppingCartLength() > 0 &&
     <div className="checkout">
-     {!open ? <h1 className='price'>Wartość twojego zamówienia to {calculateTotal()} zł</h1> :
+     {!open ? <h1 className='price'>Wartość twojego zamówienia to {total} zł</h1> :
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}  anchorOrigin={{ vertical: "top", horizontal: "center" }}>
         <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-            <h2>Wysłano zamówienie! Twój kod to {orderId}!</h2>
+            <h2>Wysłano zamówienie! Twój kod to {orderId-1}!</h2>
             <h3>Nastąpi przekierowanie...</h3>
         </Alert>
         </Snackbar>

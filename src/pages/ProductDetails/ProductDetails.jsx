@@ -2,7 +2,6 @@ import { doc, getDoc,} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import {useLocation, useParams} from "react-router-dom";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import { useAuthentication } from "../../context/auth/AuthContext";
 import {AiOutlineShoppingCart} from 'react-icons/ai'
 import { db } from "../../firebase/firebase";
 import "./productdetails.scss";
@@ -12,7 +11,6 @@ import { useShoppingCart } from "../../context/shoppingcart/ShoppingCartContext"
 import { useNavigate } from "react-router-dom";
 const ProductDetails = () => {
     const {addItem} = useShoppingCart();
-    const {currentUser} = useAuthentication()
     const [data,setData] = useState()
     const collection = useLocation().pathname.split("/")[1]
     const {id} = useParams()
@@ -33,7 +31,7 @@ const ProductDetails = () => {
     return (
         <>
         <div className="productDetails">
-            <Sidebar userData={currentUser}/>
+            <Sidebar/>
             <Arrow/>
             <ShoppingCart/>
             <div className="content">

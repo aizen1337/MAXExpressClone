@@ -1,7 +1,7 @@
 .order {
     display: flex;
     background-color: rgba(0,0,0,0.8);
-    height: 105vh;
+    height: 100vh;
     .shoppingCart {
         left: auto;
         top: 0;
@@ -10,13 +10,13 @@
     }
     .container {
         .title {
-            padding-top: 3em;
+            padding-top: 2em;
         }
         color: white;
         display: block;
         text-align: center;
         align-items: center;
-        padding-top: 2em;
+        padding-top: 1em;
         .categories {
             display: grid;
             grid-template-columns: auto;

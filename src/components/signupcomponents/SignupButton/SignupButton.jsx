@@ -11,7 +11,7 @@ const SignupButton = ({icon}) => {
     }   
     return (
     <div className="loginButton">
-        <button className="signup-form-submitbtn" onClick={handleLogin} >Signup with <i>{icon}</i></button>
+        <button className="signup-form-submitbtn" onClick={handleLogin} >Zaloguj się używając <i>{icon}</i></button>
     </div>
     );
 }
