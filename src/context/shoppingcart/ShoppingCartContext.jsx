@@ -8,11 +8,12 @@ export function useShoppingCart() {
 export function ShoppingCartProvider({children}) {
     const [shoppingCartItems,setShoppingCartItems] = useLocalStorage("shoppingcart",[]);
     const [total,setTotal] = useLocalStorage("total",0)
-    const addItem = (item) => {
+    const addItem = (item,path) => {
         const itemId = shoppingCartItems.length > 0 ? Math.max(...shoppingCartItems.map((item) => item.id)) + 1 : 0;
         const newItem = 
         {
             id: itemId,
+            path: path,
             item
         };
         setShoppingCartItems([...shoppingCartItems,newItem]);

@@ -5,7 +5,7 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import LocalAtmOutlinedIcon from '@mui/icons-material/LocalAtmOutlined';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import {collection,addDoc, serverTimestamp, query, orderBy,limit, onSnapshot} from 'firebase/firestore';
 import {db} from '../../../firebase/firebase'
 import Snackbar from '@mui/material/Snackbar';
@@ -18,6 +18,7 @@ const ShoppingCartTable = () => {
     const [open, setOpen] = useState(false);
     const [orderId,setOrderId] = useState();
     const [resetOpen, setResetOpen] = useState(false);
+    console.log(shoppingCartItems)
     useEffect(() => {
         onSnapshot(query(collection(db, "orders"), orderBy("orderNumber","desc"), limit(1)), (doc) => {
             if(doc.docs[0].data().orderNumber < 8000) {
@@ -49,21 +50,19 @@ const ShoppingCartTable = () => {
             orderTimestamp: serverTimestamp()
         }).then(() => {
          setOpen(true)
-         setTimeout(() => {
             setTotal(0)  
             resetShoppingCart();
-         },5000)
         }
          )
         .catch((error) => console.log(error))  
     }
     const resetHandler = () => {
-        setResetOpen(true)
         setTimeout(() => {
+            setResetOpen(true)
             resetShoppingCart();
             setTotal(0)
             navigate('/order');
-        },3000)
+        }, 1000)
     }
     const checkoutHandler = () => {
         sendOrder()
@@ -90,7 +89,9 @@ const ShoppingCartTable = () => {
                     </div>
                     <div className="action-buttons">
                         <div className="item" onClick={() => removeItem(shoppingCartItem.id)}>Usuń <DeleteOutlineOutlinedIcon className='icon'/></div>
-                        <div className="item">Szczegóły <SearchOutlinedIcon className='icon'/></div>
+                        <div className="item"><Link to={shoppingCartItem.path}  style={{
+                                                                                textDecoration: 'none',
+                                                                                color: 'red'}}>Szczegóły <SearchOutlinedIcon className='icon'/></Link></div>
                       
                     </div>
                     <img className="image" src={shoppingCartItem.item.photoURL} alt="Zdjęcie produktu"/>

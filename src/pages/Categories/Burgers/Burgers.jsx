@@ -6,10 +6,11 @@ import React from 'react'
 import Sidebar from '../../../components/Sidebar/Sidebar'
 import Arrow from '../../../components/ui/Arrow/Arrow'
 import "../categories.scss"
-import {Outlet } from 'react-router-dom'
+import {Outlet, useLocation } from 'react-router-dom'
 import ShoppingCart from '../../../components/ShoppingCart/ShoppingCart'
 const Burgers = () => {
     const [burgers,setBurgers] = useState([])
+    const documentCollection = useLocation().pathname.split("/")[1]
     useEffect(() => {
         onSnapshot(collection(db,"burgers"), (snapshot) => {
             let data = []
@@ -22,6 +23,7 @@ const Burgers = () => {
             setBurgers(data)
           })
     })
+
     return (
     <>
     <div className="categories-content">
@@ -30,7 +32,7 @@ const Burgers = () => {
       <ShoppingCart/>
       <div className="elements">
       { burgers.map((doc) => (
-          <Widget destination={doc.id} name={doc.name} imageURL={doc.photoURL} price={doc.price} item={doc} key={doc.id}/>
+          <Widget destination={doc.id} path={`/${documentCollection}/${doc.id}`} name={doc.name} imageURL={doc.photoURL} price={doc.price} item={doc} key={doc.id}/>
       )) }
       </div>
     </div>  

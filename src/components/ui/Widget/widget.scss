@@ -14,42 +14,44 @@
         padding: 1em;
     }
     .bottom-panel {
-        margin-top: auto;
-        margin-left: auto;
-        width: 120%;
-        height: 100%;
         display: flex;
         justify-content: space-evenly;
         align-items: center;
         text-align: center;
         float: right;
-        background-color: rgba(0,0,0,0.5);
+        width: 100%;
+        backdrop-filter: blur(10px);
         border-radius: 0 10px 10px 0;
-        .price {
-            color: white;
-            font-size: 1.5em;
-        }
-        .icon {
-            font-size: 2em;
-            color: white;
+        h6 {
+            color: black;
             cursor: pointer;
             &:hover {
                 color: crimson;
                 transition: 850ms;
+                .icon {
+                    color: crimson;
+                    transition: 850ms;
+                }
             }
+        }
+        .price {
+            color: black;
+            font-size: 1.5em;
+        }
+        .icon {
+            font-size: 2em;
+            color: black;
+            cursor: pointer;
         }
     }
     .hidden {
-        visibility: hidden;
+        display: none;
     }
 }
 @media screen and (max-width: 768px) {
     .widget {
     height: 30vh;
     width: 70vw;
-    .widgetTitle {
-        position: absolute;
-    }
     .bottom-panel {
         width: 100%;
         flex-direction: column;

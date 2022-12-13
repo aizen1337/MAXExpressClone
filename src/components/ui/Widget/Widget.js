@@ -4,12 +4,12 @@ import "./widget.scss"
 import { TbShoppingCartPlus, TbSearch } from 'react-icons/tb'
 import Tooltip from "../Tooltip/Tooltip";
 import { useShoppingCart } from "../../../context/shoppingcart/ShoppingCartContext";
-const Widget = ({name, imageURL , destination, price,item}) => {
+const Widget = ({name, imageURL , destination, price,item, path}) => {
   const [open,setOpen] = useState(false)
   const {addItem} = useShoppingCart();
-  const addToShoppingCart = (item) => {
+  const addToShoppingCart = (item,path) => {
     alert("Dodano do zamówienia!")
-    addItem(item)
+    addItem(item,path)
   }
   return (
       <div className="widget" onMouseOver={() => setOpen(true)} onMouseOut={() => setOpen(false)} style={{
@@ -17,7 +17,7 @@ const Widget = ({name, imageURL , destination, price,item}) => {
       }}>
         <h1 className={!open ? "widgetTitle" : 'hidden'}>{name}</h1>
         <div className={open ? "bottom-panel" : 'hidden'}>
-          <h6 onClick={() => addToShoppingCart(item)}>
+          <h6 onClick={() => addToShoppingCart(item,path)}>
           Dodaj do zamówienia
           <TbShoppingCartPlus className="icon" />
           </h6>

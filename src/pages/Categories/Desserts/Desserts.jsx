@@ -6,10 +6,11 @@ import React from 'react'
 import Sidebar from '../../../components/Sidebar/Sidebar'
 import "../categories.scss"
 import Arrow from '../../../components/ui/Arrow/Arrow'
-import {Outlet } from 'react-router-dom'
+import {Outlet, useLocation } from 'react-router-dom'
 import ShoppingCart from '../../../components/ShoppingCart/ShoppingCart'
 const Desserts = () => {
     const [desserts,setDesserts] = useState([])
+    const documentCollection = useLocation().pathname.split("/")[1]
     useEffect(() => {
          onSnapshot(collection(db,"desserts"), (snapshot) => {
             let data = []
@@ -31,7 +32,7 @@ const Desserts = () => {
     <div className="elements">
     { 
       desserts.map((doc) => (
-          <Widget destination={doc.id} item={doc} name={doc.name} imageURL={doc.photoURL} price={doc.price} key={doc.id}/>
+        <Widget destination={doc.id} path={`/${documentCollection}/${doc.id}`} name={doc.name} imageURL={doc.photoURL} price={doc.price} item={doc} key={doc.id}/>
       )) }
     </div>
     </div>
