@@ -1,14 +1,37 @@
 .table {
     background-color: white;
     border-radius: 10px;
-    width: 80%;
+    width: 60%;
     height: max-content;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+    scroll-behavior:smooth;
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: crimson;
+        border-radius: 10px;
+      }
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
     .shoppingCartItem {
+        scroll-snap-align: start;
+        transform-origin: center center;
+        transform: scale(1);
+        transition: transform 0.85s;
         padding: 1em;
         border-radius: 10px; 
+        min-height: 90vh;
+        .image {
+            width: 50%;
+            aspect-ratio: 1/1;
+        }
         .properties {
             display: flex;
             .name, .price {
@@ -73,11 +96,24 @@
     }
 }
 @media (max-width: 768px) {
-    .image {
+    .table {
+        height: fit-content;
         width: 100%;
-        aspect-ratio: 1/1;
+        margin-top: 4.5em;
+        .image {
+            width: 70%;
+            aspect-ratio: 1/1;
+        }
     }
     .checkout {
+        width: 100%;
         flex-direction: column;
+        margin-top: auto;
+        .buttons {
+            .checkout-button,.reset-button {
+                width: 100%;
+            }
+            justify-content: space-between;
+        }
     }
 }

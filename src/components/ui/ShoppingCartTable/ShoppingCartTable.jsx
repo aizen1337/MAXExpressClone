@@ -18,7 +18,6 @@ const ShoppingCartTable = () => {
     const [open, setOpen] = useState(false);
     const [orderId,setOrderId] = useState();
     const [resetOpen, setResetOpen] = useState(false);
-    console.log(shoppingCartItems)
     useEffect(() => {
         onSnapshot(query(collection(db, "orders"), orderBy("orderNumber","desc"), limit(1)), (doc) => {
             if(doc.docs[0].data().orderNumber < 8000) {
@@ -50,19 +49,20 @@ const ShoppingCartTable = () => {
             orderTimestamp: serverTimestamp()
         }).then(() => {
          setOpen(true)
+            setTimeout(() => {
             setTotal(0)  
             resetShoppingCart();
-        }
+        },3000)}
          )
         .catch((error) => console.log(error))  
     }
     const resetHandler = () => {
+        setResetOpen(true)
         setTimeout(() => {
-            setResetOpen(true)
             resetShoppingCart();
             setTotal(0)
             navigate('/order');
-        }, 1000)
+        }, 3000)
     }
     const checkoutHandler = () => {
         sendOrder()
@@ -90,8 +90,8 @@ const ShoppingCartTable = () => {
                     <div className="action-buttons">
                         <div className="item" onClick={() => removeItem(shoppingCartItem.id)}>Usuń <DeleteOutlineOutlinedIcon className='icon'/></div>
                         <div className="item"><Link to={shoppingCartItem.path}  style={{
-                                                                                textDecoration: 'none',
-                                                                                color: 'red'}}>Szczegóły <SearchOutlinedIcon className='icon'/></Link></div>
+                        textDecoration: 'none',
+                        color: 'red'}}>Szczegóły <SearchOutlinedIcon className='icon'/></Link></div>
                       
                     </div>
                     <img className="image" src={shoppingCartItem.item.photoURL} alt="Zdjęcie produktu"/>

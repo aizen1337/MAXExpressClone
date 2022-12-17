@@ -1,11 +1,22 @@
 .arrow {
-    position: absolute;
+    position: sticky;
     left: 0;
-    font-size: 5rem;
-    margin-top: 5rem;
-    color: white;
-    &:hover {
-        color: crimson;
-        transition: .85s;
+    top: 0;
+    display: initial;
+    position: absolute;
+    margin-top: 1em;
+    .arrowIcon {
+        display: flex;
+        position: sticky;
+        top: 0;
+        left: 0;
+        font-size: 5em;
+        padding: 20px;
+        cursor: pointer;
+        color: whitesmoke;
+        &:hover {
+            color: crimson;
+            transition: .85s;
+        }
     }
 }

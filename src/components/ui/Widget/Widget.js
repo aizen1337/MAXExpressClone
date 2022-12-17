@@ -4,14 +4,28 @@ import "./widget.scss"
 import { TbShoppingCartPlus, TbSearch } from 'react-icons/tb'
 import Tooltip from "../Tooltip/Tooltip";
 import { useShoppingCart } from "../../../context/shoppingcart/ShoppingCartContext";
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 const Widget = ({name, imageURL , destination, price,item, path}) => {
   const [open,setOpen] = useState(false)
+  const [alertOpen,setAlertOpen] = useState(false);
   const {addItem} = useShoppingCart();
   const addToShoppingCart = (item,path) => {
-    alert("Dodano do zamówienia!")
-    addItem(item,path)
+    setAlertOpen(true)
+    setTimeout(()=> {
+      addItem(item,path)
+    },
+    1000)
   }
   return (
+      <>
+      {
+            <Snackbar open={alertOpen} autoHideDuration={1500} onClose={()=> setAlertOpen(false)} TransitionComponent={"Fade"} anchorOrigin={{ vertical: "top", horizontal: "center" }}>
+            <Alert severity="success" sx={{ width: '100%' }}>
+                <h4>Pomyślnie dodano {item.name} do zamówienia</h4>
+            </Alert>
+            </Snackbar>
+      }
       <div className="widget" onMouseOver={() => setOpen(true)} onMouseOut={() => setOpen(false)} style={{
         backgroundImage: `url(${imageURL})`
       }}>
@@ -27,6 +41,7 @@ const Widget = ({name, imageURL , destination, price,item, path}) => {
           }}><TbSearch className="icon"/></Link>}/>
         </div>
       </div>
+      </>
     );
 }
  

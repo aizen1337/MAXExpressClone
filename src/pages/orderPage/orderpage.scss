@@ -24,3 +24,13 @@
         }
     }
 }
+@media screen and (max-width: 1000px) {
+    .order {
+        height: 110vh;
+    }
+}
+@media screen and (max-width: 768px) {
+    .order {
+        height: max-content;
+    }
+}
