@@ -13,6 +13,7 @@ import Desserts from './pages/Categories/Desserts/Desserts';
 import ShoppingCartPage from './pages/ShoppingCartPage/ShoppingCartPage';
 import { ShoppingCartProvider } from './context/shoppingcart/ShoppingCartContext';
 import OrderHistory from './pages/OrderHistory/OrderHistory';
+import OrderDetails from './pages/OrderDetails/OrderDetails';
 function App() {
   return (
     <BrowserRouter>
@@ -45,6 +46,9 @@ function App() {
             </Route>
             <Route path="/order-history">
             <Route index element={<OrderHistory/>}/>
+            </Route>
+            <Route path='/order-history/:id'>
+              <Route index element={<OrderDetails/>}/>
             </Route>
            <Route path="*">
             <Route index element={<NotFoundPage/>}/>

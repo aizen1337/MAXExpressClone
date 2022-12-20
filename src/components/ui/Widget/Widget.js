@@ -20,7 +20,7 @@ const Widget = ({name, imageURL , destination, price,item, path}) => {
   return (
       <>
       {
-            <Snackbar open={alertOpen} autoHideDuration={1500} onClose={()=> setAlertOpen(false)} TransitionComponent={"Fade"} anchorOrigin={{ vertical: "top", horizontal: "center" }}>
+          <Snackbar open={alertOpen} autoHideDuration={1500} onClose={()=> setAlertOpen(false)} anchorOrigin={{ vertical: "top", horizontal: "center" }}>
             <Alert severity="success" sx={{ width: '100%' }}>
                 <h4>Pomyślnie dodano {item.name} do zamówienia</h4>
             </Alert>

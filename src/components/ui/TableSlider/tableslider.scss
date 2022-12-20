@@ -1,0 +1,66 @@
+.table {
+    background-color: white;
+    border-radius: 10px 10px 0 0;
+    width: 75%;
+    min-height: max-content;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    scroll-behavior:smooth;
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+    margin: 0;
+      &::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: crimson;
+        border-radius: 10px;
+      }
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .table-item {
+        scroll-snap-align: start;
+        transform-origin: center center;
+        height: 100rem;
+        transform: scale(1);
+        transition: transform 0.85s;
+        padding: 1rem;
+        border-radius: 10px; 
+        .image {
+            width: 50%;
+            aspect-ratio: 1/1;
+        }
+        .item-properties {
+            display: flex;
+            .name, .price {
+                color: crimson;
+                font-size: 2em;
+            }
+        }
+        .action-buttons {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            font-size: 1rem;
+            color: crimson;
+            cursor: pointer;
+            .button {
+                font-size: 2em;
+            }
+        }
+    }
+}
+@media (max-width: 768px) {
+    .table {
+        height: fit-content;
+        width: 100%;
+        margin-top: 4.5em;
+        .image {
+            width: 70%;
+            aspect-ratio: 1/1;
+        }
+    }
+}

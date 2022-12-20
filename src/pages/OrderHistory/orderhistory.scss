@@ -9,8 +9,7 @@
         display: flex;
         align-items: center;
         text-align: center;
-        flex-direction: column;
-        width: 100%;
+        width: 90%;
         padding: 1em;
         .title {
             color: white;
@@ -23,6 +22,7 @@
             }
         }
         .orders {
+            width: 100%;
             display: grid;
             grid-template-columns: auto auto auto auto;
             gap: 1em;
@@ -31,7 +31,9 @@
     @media screen and (max-width: 768px) {
         .content {
         height: max-content;
+        flex-direction: column;
             .orders {
+            width: 100%;
             margin-top: 2em;
             grid-template-columns: auto auto;
             }   

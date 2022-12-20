@@ -1,7 +1,7 @@
 .order {
     display: flex;
     background-color: rgba(0,0,0,0.8);
-    height: 100vh;
+    height: 105vh;
     .shoppingCart {
         left: auto;
         top: 0;
@@ -10,7 +10,7 @@
     }
     .container {
         .title {
-            padding-top: 2em;
+           margin-top: 2em;
         }
         color: white;
         display: block;
@@ -23,14 +23,10 @@
             gap: 10px;
         }
     }
-}
-@media screen and (max-width: 1000px) {
-    .order {
-        height: 110vh;
+    @media screen and (max-width: 768px) {
+        .order {
+            height: 100vh;
+        }
     }
 }
-@media screen and (max-width: 768px) {
-    .order {
-        height: max-content;
-    }
-}
+

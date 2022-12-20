@@ -9,11 +9,14 @@ import Arrow from "../../components/ui/Arrow/Arrow";
 import ShoppingCart from "../../components/ShoppingCart/ShoppingCart";
 import { useShoppingCart } from "../../context/shoppingcart/ShoppingCartContext";
 import { useNavigate } from "react-router-dom";
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 const ProductDetails = () => {
     const {addItem} = useShoppingCart();
     const [data,setData] = useState()
     const collection = useLocation().pathname.split("/")[1]
     const {id} = useParams()
+    const [alertOpen,setAlertOpen] = useState(false)
     async function singleDocument() {
         const docRef = doc(db, collection, id);
         const docSnap = await getDoc(docRef);
@@ -21,15 +24,25 @@ const ProductDetails = () => {
     }
     const history = useNavigate();
     const addingToShoppingCartHandler = (item,path) => {
-        alert("Dodano do koszyka")
-        addItem(item,path)
-        history(-1);
+        setAlertOpen(true)
+        setTimeout(()=>{
+            addItem(item,path)
+            history(-1);
+        }
+        ,1000)
     }
     useEffect(()=>{
         singleDocument()
-        })
+        },[])
     return (
         <>
+    {data && alertOpen && 
+            <Snackbar open={alertOpen} autoHideDuration={1500} onClose={()=> setAlertOpen(false)} anchorOrigin={{ vertical: "top", horizontal: "center" }}>
+            <Alert severity="success" sx={{ width: '100%' }}>
+                <h4>Pomyślnie dodano {data.name} do zamówienia</h4>
+            </Alert>
+            </Snackbar>
+      }
         <div className="productDetails">
             <Sidebar/>
             <Arrow/>
