@@ -39,7 +39,7 @@ const OrderDetails = () => {
                                     <TableItem orderPlaced={true} item={item} key={item.id}/>
                             ))}
                         </TableSlider>
-                        <Checkout/>
+                        <Checkout orderId={id}/>
                     </>
                 } 
         </div>

@@ -33,10 +33,12 @@ const ShoppingCartTable = () => {
             }
             </TableSlider>
             </>
-        : <h1 className='heading'>Twoje zamówienie wygląda na puste</h1>
+        : <h1 style={{
+            color: 'white'
+        }}>Twoje zamówienie wygląda na puste</h1>
      }
     { getShoppingCartLength() > 0 &&
-        <Checkout type={"cartCheckout"} orderId={orderId}/>
+        <Checkout type={"cartCheckout"} orderNumber={orderId}/>
     }
     </>
   )

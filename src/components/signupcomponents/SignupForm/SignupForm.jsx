@@ -18,11 +18,17 @@ const SignupForm = () => {
     const [open,setOpen] = useState(false);
     async function handleSignup(e) {
         e.preventDefault()
+        if (usernameRef.current.value === "") {
+          setErrorCode("Podaj prawidłowy login")
+          setOpen(true)
+        }
+        else {
        await signup(emailRef.current.value, passwordRef.current.value, usernameRef.current.value )
+        }
     }
     async function handleLogin(e) {
       e.preventDefault()
-          await signIn(emailRef.current.value, passwordRef.current.value)
+      await signIn(emailRef.current.value, passwordRef.current.value)
     }
     useEffect(() => {
         if(authError) {
@@ -55,26 +61,26 @@ const SignupForm = () => {
     },[authError])
       return ( 
       <>
-        {authError &&  
+        {authError &&
         <Snackbar anchorOrigin={{vertical: 'top', horizontal: 'center' }} open={open} onClose={() => !open} autoHideDuration={3000}>
         <Alert severity="error">
-          <AlertTitle>Błąd!</AlertTitle>
-          Wystąpił błąd! — <strong>{errorCode}</strong>
-          <IconButton
-              aria-label="close"
-              color="inherit"
-              sx={{ p: 0.5 }}
-              onClick={() => setOpen(false)}
-          ><CloseIcon/></IconButton>
-        </Alert>
+            <AlertTitle>Błąd!</AlertTitle>
+            Wystąpił błąd! — <strong>{errorCode}</strong>
+            <IconButton
+                aria-label="close"
+                color="inherit"
+                sx={{ p: 0.5 }}
+                onClick={() => setOpen(false)}
+            ><CloseIcon/></IconButton>
+          </Alert>
         </Snackbar>
         }
         <div className="signupComponent">
         <h2>{login ? "Zarejestruj się!" : "Zaloguj się!"}</h2>
         <form onSubmit={login ? handleSignup : handleLogin} className="signup-form">
-            {login && <input type="text" className="signup-form-element" ref={usernameRef} placeholder="Twój login..." required/>}
-            <input type="email" className="signup-form-element" ref={emailRef} placeholder="Twój email..." required/>
-            <input type="password"  className="signup-form-element" ref={passwordRef} placeholder="Twoje hasło..." required/>
+            {login && <input type="text" className="signup-form-element" ref={usernameRef} placeholder="Twój login..."/>}
+            <input type="email" className="signup-form-element" ref={emailRef} placeholder="Twój email..." />
+            <input type="password"  className="signup-form-element" ref={passwordRef} placeholder="Twoje hasło..."/>
             <div className="buttonDiv">
               <button type="submit" className="signup-form-submitbtn">{login ? "Zarejestruj się!" : "Zaloguj się!"} </button>
               <SignupButton icon={<FaGoogle/>}/>

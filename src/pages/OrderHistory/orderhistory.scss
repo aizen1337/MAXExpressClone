@@ -23,9 +23,23 @@
         }
         .orders {
             width: 100%;
+            height: 90vh;
             display: grid;
-            grid-template-columns: auto auto auto auto;
+            grid-template-columns: auto auto auto;
+            overflow-y: scroll;
+            overflow-x: hidden;
             gap: 1em;
+            &::-webkit-scrollbar {
+                width: 10px;
+                height: 10px;
+              }
+              &::-webkit-scrollbar-thumb {
+                background: crimson;
+                border-radius: 10px;
+              }
+              &::-webkit-scrollbar-track {
+                background: transparent;
+              }
         }
     }
     @media screen and (max-width: 768px) {
