@@ -1,6 +1,5 @@
 import React from 'react'
 import { AuthProvider, useAuthentication} from '../../context/auth/AuthContext'
-import Sidebar from '../../components/Sidebar/Sidebar'
 import CategoryWidget from '../../components/ui/CategoryWidget/CategoryWidget'
 import "./orderpage.scss"
 import { Outlet } from 'react-router-dom'
@@ -11,7 +10,6 @@ const OrderPage = () => {
       <>
       <AuthProvider>
       <div className="order">
-        <Sidebar/>
         <ShoppingCart/>
         <div className="container">
             <h1 className='title'>Witaj, {currentUser.displayName}. Na co masz dziś ochotę?</h1>

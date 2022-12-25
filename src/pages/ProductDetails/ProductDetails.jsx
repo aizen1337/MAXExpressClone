@@ -1,7 +1,6 @@
 import { doc, getDoc,} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import {useLocation, useParams} from "react-router-dom";
-import Sidebar from "../../components/Sidebar/Sidebar";
 import {AiOutlineShoppingCart} from 'react-icons/ai'
 import { db } from "../../firebase/firebase";
 import "./productdetails.scss";
@@ -44,7 +43,6 @@ const ProductDetails = () => {
             </Snackbar>
       }
         <div className="productDetails">
-            <Sidebar/>
             <Arrow/>
             <ShoppingCart/>
             <div className="content">

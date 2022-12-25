@@ -1,7 +1,6 @@
 import React from 'react'
 import avatar from '../../assets/avatar.png'
 import { useAuthentication } from '../../context/auth/AuthContext'
-import Sidebar from '../../components/Sidebar/Sidebar'
 import "./accountdetails.scss"
 import { useState, useRef, useEffect } from 'react'
 import {VscChromeClose} from "react-icons/vsc"
@@ -68,7 +67,6 @@ const AccountDetails = () => {
 })
   return (
     <div className='account-details'>
-      <Sidebar/>
       <div className={usernamePromptOpen ? "fullscreenInput" : "disabled"}>
         <div className="menu" onClick={() => setUsernamePromptOpen(false)}>
             <i className='bars'><VscChromeClose /></i>

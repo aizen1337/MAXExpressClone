@@ -3,7 +3,6 @@ import {useState,useEffect} from 'react'
 import {useParams } from 'react-router-dom';
 import { db } from '../../firebase/firebase';
 import { doc, getDoc } from 'firebase/firestore';
-import Sidebar from '../../components/Sidebar/Sidebar';
 import Arrow from '../../components/ui/Arrow/Arrow';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import "./orderdetails.scss";
@@ -15,7 +14,7 @@ const OrderDetails = () => {
     const {id} = useParams()
     async function singleDocument() {
         const docRef = doc(db, "orders", id);
-        const order = await getDoc(docRef)
+        await getDoc(docRef)
         .then((doc) => {
             setData(doc.data({serverTimestamps: "estimate"}))
         })
@@ -26,7 +25,6 @@ const OrderDetails = () => {
     },[]) 
   return (
     <div className='order-details'>
-        <Sidebar/>
         <Arrow/>
         <div className="content">
             <h1 className='title'>{data && data?.orderNumber}</h1>
@@ -39,7 +37,7 @@ const OrderDetails = () => {
                                     <TableItem orderPlaced={true} item={item} key={item.id}/>
                             ))}
                         </TableSlider>
-                        <Checkout orderId={id}/>
+                        <Checkout orderId={id} orderData={data}/>
                     </>
                 } 
         </div>

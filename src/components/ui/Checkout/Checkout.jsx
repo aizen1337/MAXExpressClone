@@ -3,14 +3,14 @@ import LocalAtmOutlinedIcon from '@mui/icons-material/LocalAtmOutlined';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { useShoppingCart } from '../../../context/shoppingcart/ShoppingCartContext'
 import {useAuthentication} from '../../../context/auth/AuthContext'
-import {addDoc, serverTimestamp,collection} from 'firebase/firestore'; 
+import {addDoc, serverTimestamp,collection, deleteDoc,doc} from 'firebase/firestore'; 
 import {db} from '../../../firebase/firebase'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import { useState } from 'react';
 import "./checkout.scss";
-const Checkout = ({type,orderNumber, orderId }) => {
+const Checkout = ({type, orderNumber, orderId, orderData }) => {
     const {shoppingCartItems, resetShoppingCart ,total, setTotal} = useShoppingCart();
     const {currentUser} = useAuthentication();
     const [resetOpen, setResetOpen] = useState(false);
@@ -31,8 +31,7 @@ const Checkout = ({type,orderNumber, orderId }) => {
             orderNumber: orderNumber,
             orderDetails: shoppingCartItems,
             orderOwner: currentUser.uid,
-            orderTimestamp: serverTimestamp(),
-            orderStatus: 'pending'
+            orderTimestamp: serverTimestamp()
         }).then(() => {
          setOpen(true)
             setTimeout(() => {
@@ -41,6 +40,30 @@ const Checkout = ({type,orderNumber, orderId }) => {
             },3000)}
          )
         .catch((error) => console.log(error))  
+    }
+    const collectOrder = async () => {
+        await addDoc(collection(db,"orders-history"), {
+            previousID: orderId,
+            orderTotal: orderData.orderTotal,
+            orderNumber: orderData.orderNumber,
+            orderDetails: orderData.orderDetails,
+            orderOwner: orderData.orderOwner,
+            orderTimestamp: serverTimestamp()
+        })
+        .then((
+            await deleteDoc(doc(db,"orders",orderId))
+
+        )).then(() => {
+            setPickedUp(true)
+            setTimeout(() => {
+                navigate(`/success/${orderId}`)
+            },3000)
+        })
+        .catch((error) => console.log(error))
+
+    }
+    const pickupHandler = () => {
+        collectOrder()
     }
     const resetHandler = () => {
         setResetOpen(true)
@@ -52,12 +75,6 @@ const Checkout = ({type,orderNumber, orderId }) => {
     }
     const checkoutHandler = () => {
         sendOrder()
-    }
-    const pickupHandler = () => {
-        setPickedUp(true)
-        setTimeout(() => {
-            navigate(`/success/${orderId}`)
-        },3000)
     }
     const complainHandler = () => {
         setComplain(true)
@@ -95,7 +112,7 @@ const Checkout = ({type,orderNumber, orderId }) => {
      { open && 
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}  anchorOrigin={{ vertical: "top", horizontal: "center" }}>
         <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-            <h2>Wysłano zamówienie! Twój kod to {orderId-1}!</h2>
+            <h2>Wysłano zamówienie! Twój kod to {orderNumber-1}!</h2>
             <h3>Nastąpi przekierowanie...</h3>
         </Alert>
         </Snackbar>

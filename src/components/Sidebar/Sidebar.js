@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useEffect, useState, useRef} from 'react'
 import './sidebar.scss'
 import UserData from './components/UserData';
 import SidebarItem from './components/SidebarItem';
@@ -8,18 +8,32 @@ import {FaShoppingBag} from 'react-icons/fa'
 import { FaBars } from 'react-icons/fa'
 import { VscChromeClose } from 'react-icons/vsc'
 import { useAuthentication } from '../../context/auth/AuthContext';
+import { useLocation } from 'react-router-dom';
 
 export default function Sidebar() {
   const {currentUser} = useAuthentication();
-  const [open,setOpen] = useState(false);
+  const [open,setOpen] = useState(false)
+  let location = useLocation()
+  const prevProps = useRef()
+  useEffect(() => {
+    prevProps.current = location;
+  },[location])
+  useEffect(()=> {
+    if (prevProps.location !== location) {
+      setOpen(false)
+    }
+  },[location])
   const showSidebar = () => setOpen(!open)
   return (
     <>
-        <><div className={!open ? 'menu' : 'collapse'} onClick={showSidebar}>
-        <i className='bars'><FaBars /></i>
-      </div><div className={open ? 'menu' : 'collapse'} onClick={showSidebar}>
+        <>
+        <div className={!open ? 'menu' : 'collapse'} onClick={showSidebar}>
+          <i className='bars'><FaBars /></i>
+        </div>
+        <div className={open ? 'menu' : 'collapse'} onClick={showSidebar}>
           <i className='bars'><VscChromeClose /></i>
-        </div><div className={open ? 'sidebar' : 'collapse'}>
+        </div>
+        <div className={open ? 'sidebar' : 'collapse'}>
           {!currentUser && <SidebarItem location={"/login"} title={'Zaloguj się'} icon={<AiOutlineLogin />} />}
           <SidebarItem location={"/"} title={'Strona główna'} icon={<BiRestaurant />} />
           {currentUser &&

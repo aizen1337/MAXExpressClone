@@ -14,10 +14,14 @@ import ShoppingCartPage from './pages/ShoppingCartPage/ShoppingCartPage';
 import { ShoppingCartProvider } from './context/shoppingcart/ShoppingCartContext';
 import OrderHistory from './pages/OrderHistory/OrderHistory';
 import OrderDetails from './pages/OrderDetails/OrderDetails';
+import Sidebar from './components/Sidebar/Sidebar';
+import ComplainPage from './pages/ComplainPage/ComplainPage';
+import SuccessPage from './pages/SuccessPage/SuccessPage';
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
+        <Sidebar/>
         <ShoppingCartProvider>
         <Routes>
           <Route path="/">
@@ -49,6 +53,12 @@ function App() {
             </Route>
             <Route path='/order-history/:id'>
               <Route index element={<OrderDetails/>}/>
+            </Route>
+            <Route path='/success/:id'>
+              <Route index element={<SuccessPage/>}/>
+            </Route>
+            <Route path='/fail/:id'>
+              <Route index element={<ComplainPage/>}/>
             </Route>
            <Route path="*">
             <Route index element={<NotFoundPage/>}/>

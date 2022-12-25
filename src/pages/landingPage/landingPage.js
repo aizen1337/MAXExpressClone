@@ -1,5 +1,4 @@
 import React, {useRef} from 'react'
-import Sidebar from '../../components/Sidebar/Sidebar'
 import Logo from '../../components/ui/Logo/Logo'
 import "./landingpage.scss"
 import {Parallax, ParallaxLayer} from '@react-spring/parallax'
@@ -10,7 +9,6 @@ export default function LandingPage() {
   const url2 = "https://omnichannelnews.pl/wp-content/uploads/2021/12/max-premium-burgers-restauracja-gdansk.jpg"
     return (
     <div className='home'>
-      <Sidebar/>
       <div className='logo'><Logo/></div>
         <div className='container'>
           <Parallax pages={2} ref={ref}>

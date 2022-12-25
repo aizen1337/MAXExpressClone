@@ -3,7 +3,6 @@ import { db } from '../../../firebase/firebase'
 import { useEffect, useState } from 'react'
 import Widget from '../../../components/ui/Widget/Widget'
 import React from 'react'
-import Sidebar from '../../../components/Sidebar/Sidebar'
 import Arrow from '../../../components/ui/Arrow/Arrow'
 import "../categories.scss"
 import {Outlet, useLocation } from 'react-router-dom'
@@ -27,7 +26,6 @@ const Burgers = () => {
     return (
     <>
     <div className="categories-content">
-      <Sidebar/>
       <Arrow/>
       <ShoppingCart/>
       <div className="elements">

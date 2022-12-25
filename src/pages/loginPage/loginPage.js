@@ -1,5 +1,4 @@
 import React from 'react'
-import Sidebar from '../../components/Sidebar/Sidebar'
 import './login.scss'
 import { AuthProvider} from '../../context/auth/AuthContext';
 import SignupForm from '../../components/signupcomponents/SignupForm/SignupForm';
@@ -8,7 +7,6 @@ export default function LoginPage() {
   return (
     <AuthProvider>
       <div className='loginPage'>
-      <Sidebar/>
       <Logo/>
       <div className='login'>
         <SignupForm/>
