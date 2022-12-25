@@ -17,6 +17,7 @@ import OrderDetails from './pages/OrderDetails/OrderDetails';
 import Sidebar from './components/Sidebar/Sidebar';
 import ComplainPage from './pages/ComplainPage/ComplainPage';
 import SuccessPage from './pages/SuccessPage/SuccessPage';
+import "./assets/globals.scss";
 function App() {
   return (
     <BrowserRouter>

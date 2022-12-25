@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './orderwidget.scss'
-const OrderWidget = ({order}) => {
+const OrderWidget = ({order,pending}) => {
   return (
     <Link to={order.id} style={{
         textDecoration: 'none',
         color: 'black'
       }}>
-    <div className="orderWidget">
+    <div className={pending ? "pendingWidget" : "orderWidget"}>
     <div className="orderProperties">
         <h2 className='name'>{order.orderNumber}</h2>
         <h2 className='price'>{order.orderTotal},00 zł</h2>

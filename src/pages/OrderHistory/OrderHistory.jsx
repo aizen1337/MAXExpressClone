@@ -46,13 +46,13 @@ const OrderHistory = () => {
                     <div className='orders'>
                     {
                     pendingOrders.map((order) => (
-                        <OrderWidget key={order.id} order={order}/>
+                        <OrderWidget key={order.id} order={order} pending={true}/>
                     ))
                     }
                     </div>
                     </>
                     :
-                    <h1 className='title'>Nie złożyłeś jeszcze żadnego zamówienia. <Link to="/order">Zapraszamy!</Link></h1>
+                    <h1 className='title'>Nie czekasz na żadne zamówienie <Link to="/order">Zapraszamy!</Link></h1>
             }
             </div>
             <div className="finishedOrders">

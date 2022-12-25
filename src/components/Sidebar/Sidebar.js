@@ -35,7 +35,7 @@ export default function Sidebar() {
         </div>
         <div className={open ? 'sidebar' : 'collapse'}>
           {!currentUser && <SidebarItem location={"/login"} title={'Zaloguj się'} icon={<AiOutlineLogin />} />}
-          <SidebarItem location={"/"} title={'Strona główna'} icon={<BiRestaurant />} />
+            <SidebarItem location={"/"} title={'Strona główna'} icon={<BiRestaurant />} />
           {currentUser &&
             <>
             <SidebarItem location={"/order"} title={'Zamów'} icon={<FaShoppingBag />} />

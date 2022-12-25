@@ -1,10 +1,17 @@
-.orderWidget {
+.orderWidget, .pendingWidget {
     background-color: azure;
     border-radius: 10px;
     color: black;
     padding: 1em;
-    width: clamp(10vw, 15vw,20vw);
-    height: clamp(20vh, 30vh,40vh);
+    width: 100%;
+    height: 40vh;
+    .orderProperties {
+        .name {
+            color: crimson;
+        }
+    }
+}
+.pendingWidget {
     box-shadow: 0 0 0 0 rgba(0, 255, 0, 1);
 	transform: scale(1);
 	animation: pulse 1s infinite;
@@ -24,15 +31,10 @@
             box-shadow: 0 0 0 0 rgba(0, 255, 0, 0);
         }
     }
-    .orderProperties {
-        .name {
-            color: crimson;
-        }
-    }
 }
 @media screen and (max-width: 768px) {
-    .orderWidget {
+    .orderWidget, .pendingWidget {
         width: 40vw;
-        height: 40vw;
+        height: 40vh;
     }
 }

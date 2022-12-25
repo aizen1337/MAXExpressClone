@@ -5,7 +5,7 @@ import { useShoppingCart } from '../../../context/shoppingcart/ShoppingCartConte
 import {useAuthentication} from '../../../context/auth/AuthContext'
 import {addDoc, serverTimestamp,collection, deleteDoc,doc} from 'firebase/firestore'; 
 import {db} from '../../../firebase/firebase'
-import { useLocation, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import { useState } from 'react';
@@ -120,7 +120,7 @@ const Checkout = ({type, orderNumber, orderId, orderData }) => {
     <div className="checkout">
     {type === "cartCheckout" ? 
     <>
-    <h1 className='price'>Wartość twojego zamówienia to {total} zł</h1>
+    <h1 className='price'>Kwota twojego zamówienia to {total} zł</h1>
         <div className="buttons">
             <div className="reset-button" onClick={() => resetHandler()}>
             <h6>Przerwij składanie zamówienia <CancelOutlinedIcon/></h6>
@@ -132,7 +132,9 @@ const Checkout = ({type, orderNumber, orderId, orderData }) => {
     </>
     :
     <>
+    <h1 className='price'>Kwota twojego zamówienia to {orderData.orderTotal} zł</h1>
     <div className="buttons">
+        
         <div className="checkout-button" onClick={() => pickupHandler()}>
         <h6>Potwierdź odbiór zamówienia <LocalAtmOutlinedIcon/></h6>
         </div>

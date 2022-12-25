@@ -1,7 +1,7 @@
 .order {
     display: flex;
     background-color: rgba(0,0,0,0.8);
-    height: 105vh;
+    min-height: 100vh;
     .shoppingCart {
         left: auto;
         top: 0;
@@ -25,7 +25,7 @@
     }
     @media screen and (max-width: 768px) {
         .order {
-            height: 100vh;
+            height: max-content;
         }
     }
 }
