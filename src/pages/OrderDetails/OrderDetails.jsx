@@ -6,17 +6,24 @@ import { doc, getDoc } from 'firebase/firestore';
 import Arrow from '../../components/ui/Arrow/Arrow';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import "./orderdetails.scss";
-import Checkout from '../../components/ui/Checkout/Checkout';
+import Checkout from '../../components/Checkout/Checkout';
 import TableItem from '../../components/ui/TableSlider/TableItem';
 import TableSlider from '../../components/ui/TableSlider/TableSlider';
-const OrderDetails = () => {
+const OrderDetails = ({pending}) => {
     const [data,setData] = useState()
     const {id} = useParams()
     async function singleDocument() {
-        const docRef = doc(db, "orders", id);
+        if (pending) {
+        var docRef = doc(db, "orders", id);
+        }
+        else {
+        docRef = doc(db,"orders-history",id)
+        }
         await getDoc(docRef)
         .then((doc) => {
+            if(doc.exists()) {
             setData(doc.data({serverTimestamps: "estimate"}))
+            }
         })
         .catch((error) => console.log(error));
     }
@@ -25,7 +32,7 @@ const OrderDetails = () => {
     },[]) 
   return (
     <div className='order-details'>
-        <Arrow/>
+        <Arrow destination={"/order-history"}/>
         <div className="content">
             <h1 className='title'>{data && data?.orderNumber}</h1>
             <h4 className='title'>Order placed {data && formatDistanceToNow(data.orderTimestamp.toDate(),{addSuffix: true})}</h4>
@@ -37,7 +44,7 @@ const OrderDetails = () => {
                                     <TableItem orderPlaced={true} item={item} key={item.id}/>
                             ))}
                         </TableSlider>
-                        <Checkout orderId={id} orderData={data}/>
+                        <Checkout orderId={id} orderData={data} pending={pending}/>
                     </>
                 } 
         </div>

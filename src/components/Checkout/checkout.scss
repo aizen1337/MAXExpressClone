@@ -17,7 +17,7 @@
         justify-content: center;
         text-align: center;
         gap: 10px;
-        .checkout-button, .reset-button {
+        .checkout-button, .reset-button, .print-button {
             width: 100%;
             cursor: pointer;
             display: flex;
@@ -29,10 +29,20 @@
             height: 5rem;
         }
         .reset-button {
-            background-color: crimson;
+            background: #cb2d3e;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #ef473a, #cb2d3e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
         }
         .checkout-button {
-            background-color: darkgreen;
+            background: #56ab2f;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #a8e063, #56ab2f);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #a8e063, #56ab2f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+        .print-button {
+            background: #00d2ff;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #3a7bd5, #00d2ff);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #3a7bd5, #00d2ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         }
     }
 }

@@ -7,7 +7,7 @@ import './orderhistory.scss'
 import { useAuthentication } from '../../context/auth/AuthContext';
 import OrderWidget from '../../components/ui/OrderWidget/OrderWidget';
 const OrderHistory = () => {
-    const { currentUser } = useAuthentication();
+    const {currentUser} = useAuthentication();
     const [orders,setOrders] = useState([]);
     const [pendingOrders,setPendingOrders] = useState([]);
     const getOrders = async () => {
@@ -69,7 +69,7 @@ const OrderHistory = () => {
                     </div>
                     </>
                     :
-                    <h1>Nie widzę żadnego odebranego zamówienia :((  <Link to="/order">Zamów teraz!</Link></h1>
+                    <h1>Nie złożyłeś u nas jeszcze żadnego zamówienia <Link to="/order">Zamów teraz!</Link></h1>
             } 
             </div>
         </div>

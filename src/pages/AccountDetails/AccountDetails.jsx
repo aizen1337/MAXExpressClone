@@ -92,14 +92,14 @@ const AccountDetails = () => {
           <label htmlFor="file"><img alt="" src={file ? URL.createObjectURL(file) : currentUser.photoURL || avatar}/></label>
           <input type="file" id="file" onChange={e =>setFile(e.target.files[0])} style={{"display": "none"}}/>
         </form>
-        <h1>Welcome, {currentUser.displayName || "nieznajomy"}</h1>
+        <h1>Witaj, {currentUser.displayName || "nieznajomy"}</h1>
           <div className="manage-user">
             <div className='manage-user-element'>
-                <p>Nazwa użytkownika: {currentUser.displayName || "nieznajomy"}</p>
+                <p>{currentUser.displayName || "nieznajomy"}</p>
                 <button className='link' onClick={() => setUsernamePromptOpen(true)}>Zmień nazwę użytkownika</button>
             </div>
             <div className='manage-user-element'>
-                <p>Email: {currentUser.email}</p>
+                <p>{currentUser.email}</p>
                 <button className='link' onClick={() => setEmailPromptOpen(true)}>Zmień adres email</button>
             </div>   
             <div className='manage-user-element'>

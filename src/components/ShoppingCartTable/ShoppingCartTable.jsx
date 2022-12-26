@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import {collection, query, orderBy,limit, onSnapshot} from 'firebase/firestore';
-import {db} from '../../../firebase/firebase'
-import TableSlider from '../TableSlider/TableSlider';
-import TableItem from '../TableSlider/TableItem';
-import { useShoppingCart } from '../../../context/shoppingcart/ShoppingCartContext';
+import {db} from '../../firebase/firebase'
+import TableItem from '../ui/TableSlider/TableItem';
+import TableSlider from '../ui/TableSlider/TableSlider';
+import { useShoppingCart } from '../../context/shoppingcart/ShoppingCartContext';
 import Checkout from '../Checkout/Checkout';
 const ShoppingCartTable = () => {
     const {getShoppingCartLength,shoppingCartItems} = useShoppingCart()

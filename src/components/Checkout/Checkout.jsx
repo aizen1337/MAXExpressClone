@@ -1,16 +1,17 @@
 import React from 'react'
 import LocalAtmOutlinedIcon from '@mui/icons-material/LocalAtmOutlined';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import { useShoppingCart } from '../../../context/shoppingcart/ShoppingCartContext'
-import {useAuthentication} from '../../../context/auth/AuthContext'
+import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
+import { useShoppingCart } from '../../context/shoppingcart/ShoppingCartContext'
+import {useAuthentication} from '../../context/auth/AuthContext'
 import {addDoc, serverTimestamp,collection, deleteDoc,doc} from 'firebase/firestore'; 
-import {db} from '../../../firebase/firebase'
+import {db} from '../../firebase/firebase'
 import {useNavigate } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import { useState } from 'react';
 import "./checkout.scss";
-const Checkout = ({type, orderNumber, orderId, orderData }) => {
+const Checkout = ({type, orderNumber, orderId, orderData, pending}) => {
     const {shoppingCartItems, resetShoppingCart ,total, setTotal} = useShoppingCart();
     const {currentUser} = useAuthentication();
     const [resetOpen, setResetOpen] = useState(false);
@@ -86,10 +87,10 @@ const Checkout = ({type, orderNumber, orderId, orderData }) => {
     <>
     { pickedUp && 
         <Snackbar open={pickedUp} autoHideDuration={6000} onClose={handleClose}  anchorOrigin={{ vertical: "top", horizontal: "center" }}>
-        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-            <h2>Dziękujemy za odebranie zamówienia:)</h2>
-            <h3>Zapraszamy ponownie!</h3>
-        </Alert>
+            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                <h2>Dziękujemy za odebranie zamówienia :)</h2>
+                <h3>Zapraszamy ponownie!</h3>
+            </Alert>
         </Snackbar>
     } 
         { complain && 
@@ -134,13 +135,19 @@ const Checkout = ({type, orderNumber, orderId, orderData }) => {
     <>
     <h1 className='price'>Kwota twojego zamówienia to {orderData.orderTotal} zł</h1>
     <div className="buttons">
-        
-        <div className="checkout-button" onClick={() => pickupHandler()}>
-        <h6>Potwierdź odbiór zamówienia <LocalAtmOutlinedIcon/></h6>
+        {pending ? 
+        <>
+            <div className="checkout-button" onClick={() => pickupHandler()}>
+                <h6>Potwierdź odbiór zamówienia <LocalAtmOutlinedIcon/></h6>
+            </div>
+            <div className="reset-button" onClick={() => complainHandler()}>
+                <h6>Zgłoś problem z zamówieniem <CancelOutlinedIcon/></h6>
+            </div>
+        </> :
+        <div className="print-button">
+                <h6>Wydrukuj ponownie paragon <ReceiptLongOutlinedIcon/></h6>
         </div>
-        <div className="reset-button" onClick={() => complainHandler()}>
-        <h6>Zgłoś problem z zamówieniem <CancelOutlinedIcon/></h6>
-        </div>
+        }
     </div>
     </>
   }

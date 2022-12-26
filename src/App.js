@@ -53,7 +53,10 @@ function App() {
             <Route index element={<OrderHistory/>}/>
             </Route>
             <Route path='/order-history/:id'>
-              <Route index element={<OrderDetails/>}/>
+              <Route index element={<OrderDetails pending={false}/>}/>
+            </Route>
+            <Route path='/orders/:id'>
+              <Route index element={<OrderDetails pending={true}/>}/>
             </Route>
             <Route path='/success/:id'>
               <Route index element={<SuccessPage/>}/>

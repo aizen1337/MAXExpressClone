@@ -1,5 +1,4 @@
 .home {
-    background-color: rgba(0,0,0,0.8);
     display: flex;
     height: 100vh;
     .logo {
@@ -15,6 +14,7 @@
         align-items: center;
         text-align: center;
         color: white;
+        height: 100vh;
         .arrow {
             position: absolute;
             width: 100%;
@@ -29,23 +29,6 @@
                 animation: swing 1s ease;
                 -webkit-animation-iteration-count: 1;
                 animation-iteration-count: 1;
-            }
-        }
-    }
-    .navbar {
-        width: 100%;
-        position: absolute;
-        left: 45%;
-        right: 50%;
-        top: 50%;
-        bottom: 50%;
-        background-color: rgba;
-        li {
-            list-style-type: none;
-            a {
-                font-size: 3em;
-                color: crimson;
-                text-decoration: none;
             }
         }
     }

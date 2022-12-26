@@ -2,13 +2,14 @@
     margin: 0;
     padding: 0;
     display: flex;
-    background-color: rgba(0,0,0,0.8);
     height: 100vh;
     width: 100vw;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     color: whitesmoke;
     .user-info {
-        width: 100vw;
+        width: 90vw;
         display: flex;
         flex-direction: column;
         text-align: center;
@@ -31,6 +32,11 @@
     }
         .manage-user {
             width: 70%;
+            border-radius: 20px;
+            background: #232526;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            
             .manage-user-element{ 
                 padding: 15px;
                 display: flex;

@@ -1,0 +1,32 @@
+.successPage {
+    background: #232526;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    .content {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+        width: 100%;
+        color: white;
+        .rating {
+            margin-top: 2em;
+            padding: 2em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            .stars {
+                svg {
+                    border-color: aliceblue;
+                }
+            }
+            .area {
+                width: 60%;
+                height: 30vh;
+            }
+        }
+    }
+}
