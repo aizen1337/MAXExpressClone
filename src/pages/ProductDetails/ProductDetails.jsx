@@ -10,6 +10,7 @@ import { useShoppingCart } from "../../context/shoppingcart/ShoppingCartContext"
 import { useNavigate } from "react-router-dom";
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import { motion } from 'framer-motion'
 const ProductDetails = () => {
     const {addItem} = useShoppingCart();
     const [data,setData] = useState()
@@ -42,7 +43,11 @@ const ProductDetails = () => {
             </Alert>
             </Snackbar>
       }
-        <div className="productDetails">
+        <motion.div className="productDetails"
+          initial={{opacity: 0}}
+          animate={{opacity:1}}
+          exit={{opacity:0}}
+          transition={{type: 'tween'}}>
             <Arrow/>
             <ShoppingCart/>
             <div className="content">
@@ -62,7 +67,7 @@ const ProductDetails = () => {
                 </>
                 }
             </div>
-        </div>
+        </motion.div>
         </>
     );
 }

@@ -1,20 +1,29 @@
 .categoryWidget {
     background-color: white;
-    height: 20vh;
-    margin: 1.5em;
-    border-radius: 10px;
+    height: max-content;
+    width: 25vw;
+    border-radius: 15px;
     display: flex;
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: 50%;
+    flex-direction: column;
     text-decoration: none;
     &:hover {
         filter: brightness(50%);
         transition: 850ms;
     }
     .categoryWidgetTitle {
+        margin-top: auto;
         color: crimson;
         padding: 1em;
         text-decoration: none;
+    }
+}
+@media screen and (max-width: 768px) {
+    .categoryWidget {
+        width: 80vw;
+        height: 70vh;
+        scroll-snap-align: start;
+        transform-origin: center center;
+        transform: scale(1);
+        transition: transform 0.5s;
     }
 }

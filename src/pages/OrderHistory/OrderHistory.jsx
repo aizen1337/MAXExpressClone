@@ -6,6 +6,7 @@ import {db} from '../../firebase/firebase';
 import './orderhistory.scss'
 import { useAuthentication } from '../../context/auth/AuthContext';
 import OrderWidget from '../../components/ui/OrderWidget/OrderWidget';
+import { motion } from 'framer-motion'
 const OrderHistory = () => {
     const {currentUser} = useAuthentication();
     const [orders,setOrders] = useState([]);
@@ -36,7 +37,11 @@ const OrderHistory = () => {
     })
   return (
     <>
-    <div className='orderhistory'>
+    <motion.div className='orderhistory'
+      initial={{opacity: 0}}
+      animate={{opacity:1}}
+      exit={{opacity:0}}
+      transition={{type: 'tween'}}>
         <div className="content">
             <div className="pendingOrders">
             {   
@@ -73,7 +78,7 @@ const OrderHistory = () => {
             } 
             </div>
         </div>
-    </div>
+    </motion.div>
     <Outlet/>
     </>
   )

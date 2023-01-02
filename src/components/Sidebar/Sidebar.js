@@ -9,10 +9,23 @@ import { FaBars } from 'react-icons/fa'
 import { VscChromeClose } from 'react-icons/vsc'
 import { useAuthentication } from '../../context/auth/AuthContext';
 import { useLocation } from 'react-router-dom';
-
+import { motion } from "framer-motion";
 export default function Sidebar() {
   const {currentUser} = useAuthentication();
   const [open,setOpen] = useState(false)
+  const show = {
+    opacity: 1,
+    delay: 0.2,
+    display: "flex"
+  };
+  
+  const hide = {
+    opacity: 0,
+    delay: 0.2,
+    transitionEnd: {
+      display: "none"
+    }
+  };
   let location = useLocation()
   const prevProps = useRef()
   useEffect(() => {
@@ -25,15 +38,14 @@ export default function Sidebar() {
   },[location])
   const showSidebar = () => setOpen(!open)
   return (
-    <>
         <>
-        <div className={!open ? 'menu' : 'collapse'} onClick={showSidebar}>
+        <div className={!open ? 'menu' : 'collapse'} animate={!open ? show : hide}onClick={showSidebar}>
           <i className='bars'><FaBars /></i>
         </div>
-        <div className={open ? 'menu' : 'collapse'} onClick={showSidebar}>
+        <div className={open ? 'menu' : 'collapse'}  animate={open ? show : hide} onClick={showSidebar}>
           <i className='bars'><VscChromeClose /></i>
         </div>
-        <div className={open ? 'sidebar' : 'collapse'}>
+        <motion.div className='sidebar'  animate={open ? show : hide}>
           {!currentUser && <SidebarItem location={"/login"} title={'Zaloguj się'} icon={<AiOutlineLogin />} />}
             <SidebarItem location={"/"} title={'Strona główna'} icon={<BiRestaurant />} />
           {currentUser &&
@@ -43,8 +55,7 @@ export default function Sidebar() {
             </>
           }
           {currentUser && <UserData user={currentUser} />}
-        </div></>
-
-    </>
+        </motion.div>
+        </>
   )
 }

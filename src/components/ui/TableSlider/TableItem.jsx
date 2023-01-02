@@ -32,11 +32,11 @@ const TableItem = ({item, orderPlaced}) => {
     </div>
     {!orderPlaced && 
     <div className="action-buttons">
-        <div className="button" onClick={() => removeHandler(item)}>Usuń <DeleteOutlineOutlinedIcon className='icon'/></div>
+        <div className="button" onClick={() => removeHandler(item)}><DeleteOutlineOutlinedIcon className='icon'/></div>
             <div className="button">
             <Link to={item?.path}  style={{
             textDecoration: 'none',
-            color: 'red'}}>Szczegóły <SearchOutlinedIcon className='icon'/>
+            color: 'crimson'}}><SearchOutlinedIcon className='icon'/>
             </Link>
         </div>
     </div>

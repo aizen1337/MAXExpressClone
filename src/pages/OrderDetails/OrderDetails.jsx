@@ -9,6 +9,7 @@ import "./orderdetails.scss";
 import Checkout from '../../components/Checkout/Checkout';
 import TableItem from '../../components/ui/TableSlider/TableItem';
 import TableSlider from '../../components/ui/TableSlider/TableSlider';
+import { motion } from 'framer-motion'
 const OrderDetails = ({pending}) => {
     const [data,setData] = useState()
     const {id} = useParams()
@@ -31,7 +32,11 @@ const OrderDetails = ({pending}) => {
         singleDocument()
     },[]) 
   return (
-    <div className='order-details'>
+    <motion.div className='order-details'
+    initial={{opacity: 0}}
+    animate={{opacity:1}}
+    exit={{opacity:0}}
+    transition={{type: 'tween'}}>
         <Arrow destination={"/order-history"}/>
         <div className="content">
             <h1 className='title'>{data && data?.orderNumber}</h1>
@@ -48,7 +53,7 @@ const OrderDetails = ({pending}) => {
                     </>
                 } 
         </div>
-    </div>
+    </motion.div>
   )
 }
 

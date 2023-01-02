@@ -1,10 +1,9 @@
 import { createContext, useContext,useState, useEffect} from "react";
 import { auth, provider } from "../../firebase/firebase";
 import { signInWithPopup, signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateEmail, sendEmailVerification, sendPasswordResetEmail, updateProfile } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 export const AuthContext = createContext();
 export function AuthProvider({children}) {
-    const redirect = useNavigate()
     const [currentUser,setCurrentUser] = useState()
     const [authError,setAuthError] = useState()
     async function signupWithGoogle() {
@@ -12,7 +11,7 @@ export function AuthProvider({children}) {
             .then((result) => {
                 const user = result.user;
                 setCurrentUser(user);
-                redirect("/order")
+                <Navigate to="/order"/>
             }).catch((error) => {
                 setAuthError(error.code)
             });
@@ -22,8 +21,8 @@ export function AuthProvider({children}) {
             .then((result) => {
                 const user = result.user;
                 setCurrentUser(user);
-                user.displayName = username
-                redirect("/order")
+                user.displayName = username;
+                <Navigate to="/order"/>
             }).catch((error) => {
                 setAuthError(error.code)
             });
@@ -33,7 +32,7 @@ export function AuthProvider({children}) {
             .then((result) => {
                 const user = result.user;
                 setCurrentUser(user);
-                redirect("/order")
+                <Navigate to="/order"/>
             }).catch((error) => {
                 setAuthError(error.code)
             });
@@ -41,8 +40,8 @@ export function AuthProvider({children}) {
     async function logOut() {
         await signOut(auth)
         .then(() => {
-            setCurrentUser(null)
-            redirect("/")
+            setCurrentUser(null);
+            <Navigate to="/"/>
         })
         .catch((error) => {
             setAuthError(error)

@@ -1,7 +1,7 @@
 import React from 'react'
 import Rating from '@mui/material/Rating';
 import "./successpage.scss";
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { collection,addDoc } from 'firebase/firestore';
 import { db } from '../../firebase/firebase';
 import { useState, useRef } from 'react';

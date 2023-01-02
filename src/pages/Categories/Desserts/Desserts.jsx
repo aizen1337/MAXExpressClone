@@ -7,6 +7,7 @@ import "../categories.scss"
 import Arrow from '../../../components/ui/Arrow/Arrow'
 import {Outlet, useLocation } from 'react-router-dom'
 import ShoppingCart from '../../../components/ShoppingCart/ShoppingCart'
+import { motion } from 'framer-motion'
 const Desserts = () => {
     const [desserts,setDesserts] = useState([])
     const documentCollection = useLocation().pathname.split("/")[1]
@@ -24,7 +25,11 @@ const Desserts = () => {
     })
     return (
     <>
-    <div className="categories-content">
+    <motion.div className="categories-content"
+      initial={{opacity: 0}}
+      animate={{opacity:1}}
+      exit={{opacity:0}}
+      transition={{type: 'tween'}}>
     <Arrow/>
     <ShoppingCart/>
     <div className="elements">
@@ -33,7 +38,7 @@ const Desserts = () => {
         <Widget destination={doc.id} path={`/${documentCollection}/${doc.id}`} name={doc.name} imageURL={doc.photoURL} price={doc.price} item={doc} key={doc.id}/>
       )) }
     </div>
-    </div>
+    </motion.div>
     <Outlet/>
     </> 
     );
