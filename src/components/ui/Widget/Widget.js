@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./widget.scss"
 import { TbShoppingCartPlus, TbSearch } from 'react-icons/tb'
-import Tooltip from "../Tooltip/Tooltip";
 import { useShoppingCart } from "../../../context/shoppingcart/ShoppingCartContext";
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
@@ -30,15 +29,17 @@ const Widget = ({name, imageURL , destination, price,item, path}) => {
         backgroundImage: `url(${imageURL})`
       }}>
         <h1 className={!open ? "widgetTitle" : 'hidden'}>{name}</h1>
-        <div className={open ? "bottom-panel" : 'hidden'}>
-          <h6 onClick={() => addToShoppingCart(item,path)}>
-          Dodaj do zamówienia
-          <TbShoppingCartPlus className="icon" />
-          </h6>
-            <h2 className="price">{price},00 zł</h2>
-          <Tooltip tooltipContent={"Dowiedz się więcej"} child={<Link to={destination} style={{
+        <div className={open ? "hover-panel" : 'hidden'}>
+          <div className="add-button" onClick={() => addToShoppingCart(item,path)}>
+          <p>Dodaj do zamówienia</p>
+          <p>{price},00 zł</p>
+          </div>
+          <Link className="details-button" to={destination} style={{
             textDecoration: 'none'
-          }}><TbSearch className="icon"/></Link>}/>
+          }}>
+          <p>Dowiedz się więcej</p>  
+          <TbSearch className="icon"/>
+          </Link>
         </div>
       </div>
       </>

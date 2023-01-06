@@ -76,6 +76,31 @@
         align-items: center;
         width: 100vw;
         height: 100vh;
+        .cross {
+            position: absolute;
+            margin-left: auto;
+            top: 0;
+            right: 0;
+            z-index: 100;
+            display: initial;
+            position: absolute;
+            .crossIcon {
+                display: flex;
+                align-items: flex-end;
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin-left: auto;
+                font-size: 3em;
+                padding: 15px;
+                cursor: pointer;
+                color: whitesmoke;
+                &:hover {
+                    color: crimson;
+                    transition: .85s;
+                }
+            }
+        }
         form {
             height: 50vh;
             display: flex;

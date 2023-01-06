@@ -1,6 +1,6 @@
 import React from 'react'
 import Rating from '@mui/material/Rating';
-import "./successpage.scss";
+import "./surveypage.scss";
 import { useNavigate, useParams } from 'react-router-dom';
 import { collection,addDoc } from 'firebase/firestore';
 import { db } from '../../firebase/firebase';
@@ -8,7 +8,7 @@ import { useState, useRef } from 'react';
 import { useAuthentication } from '../../context/auth/AuthContext';
 import { Snackbar } from '@mui/material';
 import {Alert} from '@mui/material';
-const SuccessPage = () => {
+const SurveyPage = ({result}) => {
     const [value, setValue] = useState(0);
     const {id} = useParams();
     const [open,setOpen] = useState()
@@ -18,7 +18,7 @@ const SuccessPage = () => {
     const sendOpinion = async () => {
         await addDoc(collection(db,"opinions"), {
             opinion: areaRef.current.value,
-            orderRating: value,
+            orderRating: result === "fail" ? 1 : value,
             orderId: id,
             orderOwner: currentUser.uid
         }).then(() => {
@@ -39,7 +39,7 @@ const SuccessPage = () => {
             </Alert>
         </Snackbar>
     } 
-    <div className='successPage'>
+    <div className='surveyPage'>
         <div className="content">
             <div className="rating">
             <h1>Dziękujemy za złożenie zamówienia w MAX!</h1>
@@ -51,7 +51,7 @@ const SuccessPage = () => {
                     }}
                     className="stars"
                     />
-                <textarea ref={areaRef} className="area" placeholder='Tutaj napisz swoją opinię....'></textarea>
+                <textarea ref={areaRef} className="area" placeholder={result !== 'fail' ? 'Tutaj napisz swoją opinię....' : "Daj nam znać co mogłoby ulec poprawie"}></textarea>
                 <button className='submitButton' onClick={() => sendOpinion()}>Przekaż nam swoją opinię i wydrukuj paragon</button>
             </div>
         </div>
@@ -60,4 +60,4 @@ const SuccessPage = () => {
   )
 }
 
-export default SuccessPage
+export default SurveyPage

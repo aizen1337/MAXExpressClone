@@ -11,7 +11,7 @@ export function AuthProvider({children}) {
             .then((result) => {
                 const user = result.user;
                 setCurrentUser(user);
-                <Navigate to="/order"/>
+                <Navigate to="/order" replace={true}/>
             }).catch((error) => {
                 setAuthError(error.code)
             });
@@ -22,7 +22,7 @@ export function AuthProvider({children}) {
                 const user = result.user;
                 setCurrentUser(user);
                 user.displayName = username;
-                <Navigate to="/order"/>
+                <Navigate to="/order" replace={true}/>
             }).catch((error) => {
                 setAuthError(error.code)
             });
@@ -32,7 +32,7 @@ export function AuthProvider({children}) {
             .then((result) => {
                 const user = result.user;
                 setCurrentUser(user);
-                <Navigate to="/order"/>
+                <Navigate to="/order" replace={true} />
             }).catch((error) => {
                 setAuthError(error.code)
             });
@@ -67,7 +67,6 @@ export function AuthProvider({children}) {
     async function resetPassword() {
         await sendPasswordResetEmail(auth, currentUser.email)
         .then(() => {
-            console.log("Message sent!")
         })
         .catch((error) => {
             setAuthError(error)

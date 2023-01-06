@@ -1,6 +1,6 @@
 import React from 'react'
 import {useState,useEffect} from 'react'
-import {useParams } from 'react-router-dom';
+import {Navigate, useParams } from 'react-router-dom';
 import { db } from '../../firebase/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import Arrow from '../../components/ui/Arrow/Arrow';
@@ -10,9 +10,11 @@ import Checkout from '../../components/Checkout/Checkout';
 import TableItem from '../../components/ui/TableSlider/TableItem';
 import TableSlider from '../../components/ui/TableSlider/TableSlider';
 import { motion } from 'framer-motion'
+import { useAuthentication } from '../../context/auth/AuthContext';
 const OrderDetails = ({pending}) => {
     const [data,setData] = useState()
     const {id} = useParams()
+    const {currentUser} = useAuthentication()
     async function singleDocument() {
         if (pending) {
         var docRef = doc(db, "orders", id);
@@ -23,13 +25,19 @@ const OrderDetails = ({pending}) => {
         await getDoc(docRef)
         .then((doc) => {
             if(doc.exists()) {
-            setData(doc.data({serverTimestamps: "estimate"}))
+                if(doc.data().orderOwner !== currentUser.uid) {
+                    <Navigate to="/" replace={true}/>
+                }
+                else {
+                setData(doc.data({serverTimestamps: "estimate"}))
+                }
             }
         })
         .catch((error) => console.log(error));
     }
     useEffect(() => {
         singleDocument()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]) 
   return (
     <motion.div className='order-details'

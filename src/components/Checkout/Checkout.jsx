@@ -2,6 +2,8 @@ import React from 'react'
 import LocalAtmOutlinedIcon from '@mui/icons-material/LocalAtmOutlined';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
+import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined';
+import ReportOutlinedIcon from '@mui/icons-material/ReportOutlined';
 import { useShoppingCart } from '../../context/shoppingcart/ShoppingCartContext'
 import {useAuthentication} from '../../context/auth/AuthContext'
 import {addDoc, serverTimestamp,collection, deleteDoc,doc} from 'firebase/firestore'; 
@@ -27,6 +29,7 @@ const Checkout = ({type, orderNumber, orderId, orderData, pending}) => {
         setOpen(false);
       };
     const sendOrder = async () => {
+        setOpen(true)
         await addDoc(collection(db,"orders"), {
             orderTotal: total,
             orderNumber: orderNumber,
@@ -34,7 +37,6 @@ const Checkout = ({type, orderNumber, orderId, orderData, pending}) => {
             orderOwner: currentUser.uid,
             orderTimestamp: serverTimestamp()
         }).then(() => {
-         setOpen(true)
             setTimeout(() => {
             setTotal(0)  
             resetShoppingCart();
@@ -121,6 +123,8 @@ const Checkout = ({type, orderNumber, orderId, orderData, pending}) => {
     <div className="checkout">
     {type === "cartCheckout" ? 
     <>
+    { !open &&
+    <>
     <h1 className='price'>Kwota twojego zamówienia to {total} zł</h1>
         <div className="buttons">
             <div className="reset-button" onClick={() => resetHandler()}>
@@ -131,6 +135,8 @@ const Checkout = ({type, orderNumber, orderId, orderData, pending}) => {
             </div>
         </div>
     </>
+    }
+    </>
     :
     <>
     <h1 className='price'>Kwota twojego zamówienia to {orderData.orderTotal} zł</h1>
@@ -138,10 +144,10 @@ const Checkout = ({type, orderNumber, orderId, orderData, pending}) => {
         {pending ? 
         <>
             <div className="checkout-button" onClick={() => pickupHandler()}>
-                <h6>Potwierdź odbiór zamówienia <LocalAtmOutlinedIcon/></h6>
+                <h6>Potwierdź odbiór zamówienia <DoneOutlinedIcon/></h6>
             </div>
             <div className="reset-button" onClick={() => complainHandler()}>
-                <h6>Zgłoś problem z zamówieniem <CancelOutlinedIcon/></h6>
+                <h6>Zgłoś problem z zamówieniem <ReportOutlinedIcon/></h6>
             </div>
         </> :
         <div className="print-button">

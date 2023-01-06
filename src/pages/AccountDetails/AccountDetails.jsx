@@ -6,14 +6,18 @@ import { useState, useRef, useEffect } from 'react'
 import {VscChromeClose} from "react-icons/vsc"
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { storage } from '../../firebase/firebase'
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 const AccountDetails = () => {
   const {currentUser, updateUserEmail, resetPassword, verifyEmail, updateUsername, updateAvatar} = useAuthentication()
   const [file,setFile] = useState('');
+  const [open,setOpen] = useState(false);
   const changeEmail = async(e) => {
     e.preventDefault()
     await updateUserEmail(emailRef.current.value)
   }
   const resetPasswordHandler = async() => {
+    setOpen(true)
     await resetPassword()
   }
   const changeUserName = async(e) => {
@@ -66,10 +70,19 @@ const AccountDetails = () => {
                 file && uploadFile();
 })
   return (
+    <>
+      {open && 
+            <Snackbar open={open} autoHideDuration={1500} onClose={()=> setOpen(false)} anchorOrigin={{ vertical: "top", horizontal: "center" }}>
+            <Alert severity="info" sx={{ width: '100%' }}>
+                <h4>Wysłano wiadomość email umożliwiającą zmianę hasła</h4>
+                <h5>Sprawdź swoją skrzynkę!</h5>
+            </Alert>
+            </Snackbar>
+      }
     <div className='account-details'>
       <div className={usernamePromptOpen ? "fullscreenInput" : "disabled"}>
-        <div className="menu" onClick={() => setUsernamePromptOpen(false)}>
-            <i className='bars'><VscChromeClose /></i>
+          <div className="cross" onClick={() => setUsernamePromptOpen(false)}>
+            <i className='crossIcon'><VscChromeClose /></i>
           </div>
           <h1>Twoja nowa nazwa użytkownika: </h1>
           <form onSubmit={changeUserName}>
@@ -78,8 +91,8 @@ const AccountDetails = () => {
           </form>
       </div>
       <div className={emailPromptOpen ? "fullscreenInput" : "disabled"}>
-          <div className="menu" onClick={() => setEmailPromptOpen(false)}>
-              <i className='bars'><VscChromeClose /></i>
+          <div className="cross" onClick={() => setEmailPromptOpen(false)}>
+              <i className='crossIcon'><VscChromeClose /></i>
             </div>
             <h1>Twoj nowy email:</h1>
           <form onSubmit={changeEmail}>
@@ -104,11 +117,11 @@ const AccountDetails = () => {
             </div>   
             <div className='manage-user-element'>
                 <p>Hasło: **********</p>
-                <button className='link' onClick={resetPasswordHandler}>Zresetuj hasło</button>
+                <button className='link' onClick={() => resetPasswordHandler()}>Zresetuj hasło</button>
             </div>           
             <div className='manage-user-element'>
               <p>Czy email został zweryfikowany:</p> 
-              <p>{currentUser.emailVerified ? <h4>Zweryfikowany</h4> : <button className='link' onClick={verifyEmailHandler}>Zweryfikuj adres email</button>}</p>
+              <div>{currentUser.emailVerified ? <h4>Zweryfikowany</h4> : <button className='link' onClick={verifyEmailHandler}>Zweryfikuj adres email</button>}</div>
             </div>
             <div className='manage-user-element'>
               <p>Konto od: </p>
@@ -120,7 +133,8 @@ const AccountDetails = () => {
             </div>
           </div>
       </div>
-    </div>  
+    </div>
+    </>  
   )
 }
 
