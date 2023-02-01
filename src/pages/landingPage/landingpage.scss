@@ -15,6 +15,9 @@
         text-align: center;
         color: white;
         height: 100vh;
+        div {
+        div {
+        div {
         .arrow {
             position: absolute;
             width: 100%;
@@ -31,6 +34,36 @@
                 animation-iteration-count: 1;
             }
         }
+    .navigation {
+        margin-top: 25rem;
+        align-self: center;
+        background-color: #d04143;
+        background-image: linear-gradient(43deg, #d04143 0%, #f21720 46%, #e0233b 100%);
+        border-radius: 10px;
+        height: 15vh;
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        text-align: center;
+        .link {
+            text-decoration: none;
+            font-style: normal;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            * {
+                font-size: 2rem;
+                color: white
+            }
+        }
+    }
+}
+}
+}
     }
 }
 @-webkit-keyframes swing

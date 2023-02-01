@@ -10,8 +10,10 @@
         flex-direction: column;
         width: 100%;
         color: white;
+        padding: 2rem;
         .rating {
             margin-top: 2em;
+            font-size: 2rem;
             padding: 2em;
             display: flex;
             flex-direction: column;
@@ -19,14 +21,28 @@
             align-items: center;
             width: 100%;
             .stars {
-                svg {
-                    border-color: aliceblue;
-                }
+                font-size: 5rem;
             }
             .area {
                 width: 60%;
                 height: 30vh;
+                max-height: 50vh;
             }
+            .submitButton {
+                width: 50%;
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 1em;
+                border-radius: 10px;
+                color: white;
+                height: 5rem;
+                background: #cb2d3e;  /* fallback for old browsers */
+                background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e);  /* Chrome 10-25, Safari 5.1-6 */
+                background: linear-gradient(to right, #ef473a, #cb2d3e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            }
+
         }
     }
 }

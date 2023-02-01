@@ -3,6 +3,8 @@ import Logo from '../../components/ui/Logo/Logo'
 import "./landingpage.scss"
 import {Parallax, ParallaxLayer} from '@react-spring/parallax'
 import {BsChevronDoubleDown, BsChevronDoubleUp} from 'react-icons/bs'
+import {IoFastFoodOutline, IoCartOutline, IoSettingsOutline, IoCalendarClearOutline} from 'react-icons/io5'
+import { Link } from 'react-router-dom'
 export default function LandingPage() {
   const ref = useRef();
   const url = "https://silesiasmakuje.pl/wp-content/uploads/2018/12/20181220_200635.jpg"
@@ -25,6 +27,12 @@ export default function LandingPage() {
               backgroundImage: `url(${url2})`,
               backgroundSize: 'cover'
             }}>
+              <nav className='navigation'>
+                <Link className='link' to='/order'><p>Zamów</p><IoFastFoodOutline/></Link>
+                <Link className='link' to='/order-history'><p>Historia zamówień</p><IoCalendarClearOutline/></Link>
+                <Link className='link' to='/shopping-cart'><p>Koszyk</p><IoCartOutline/></Link>
+                <Link className='link' to='/account-settings'><p>Ustawienia</p><IoSettingsOutline/></Link>
+              </nav>
               <div className='arrow' onClick={() => ref.current.scrollTo(0)}>
               <i><BsChevronDoubleUp/></i>
               <h2>Wróć na górę</h2>

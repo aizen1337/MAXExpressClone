@@ -1,5 +1,7 @@
 .categoryWidget {
-    background-color: white;
+    background: #000000;
+    background: -webkit-linear-gradient(to right, rgba(0,0,0,0.5), rgba(26,14,37,0.5));
+    background: linear-gradient(to right, rgba(0,0,0,0.5), rgba(26,14,37,0.5));
     height: max-content;
     width: 25vw;
     border-radius: 15px;

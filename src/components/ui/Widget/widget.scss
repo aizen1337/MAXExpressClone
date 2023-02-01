@@ -1,5 +1,6 @@
 .widget {
-    background-color: white;
+    background-color: #14181a;
+    background-image: linear-gradient(62deg, #14181a 0%, #160d16 100%);    
     height: 20vh;
     width: 40vw;
     border-radius: 10px;
@@ -34,16 +35,14 @@
             }
         }
         .add-button {
-            background: #DCE35B;  /* fallback for old browsers */
-            background: -webkit-linear-gradient(to right, #45B649, #DCE35B);  /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(to right, #45B649, #DCE35B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ 
+            background-color: #FBAB7E;
+            background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
             border-top-left-radius: 10px;
             border-bottom-left-radius: 10px;          
         }
         .details-button {
-            background: #ee0979;  /* fallback for old browsers */
-            background: -webkit-linear-gradient(to right, #ff6a00, #ee0979);  /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(to right, #ff6a00, #ee0979); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background-color: #d04143;
+            background-image: linear-gradient(43deg, #d04143 0%, #f21720 46%, #e0233b 100%);
             border-top-right-radius: 10px;
             border-bottom-right-radius: 10px;   
         }
