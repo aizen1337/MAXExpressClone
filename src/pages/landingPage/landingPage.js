@@ -5,6 +5,7 @@ import {Parallax, ParallaxLayer} from '@react-spring/parallax'
 import {BsChevronDoubleDown, BsChevronDoubleUp} from 'react-icons/bs'
 import {IoFastFoodOutline, IoCartOutline, IoSettingsOutline, IoCalendarClearOutline} from 'react-icons/io5'
 import { Link } from 'react-router-dom'
+import {motion} from 'framer-motion'
 export default function LandingPage() {
   const ref = useRef();
   const url = "https://silesiasmakuje.pl/wp-content/uploads/2018/12/20181220_200635.jpg"
@@ -28,10 +29,36 @@ export default function LandingPage() {
               backgroundSize: 'cover'
             }}>
               <nav className='navigation'>
-                <Link className='link' to='/order'><p>Zamów</p><IoFastFoodOutline/></Link>
-                <Link className='link' to='/order-history'><p>Historia zamówień</p><IoCalendarClearOutline/></Link>
-                <Link className='link' to='/shopping-cart'><p>Koszyk</p><IoCartOutline/></Link>
-                <Link className='link' to='/account-settings'><p>Ustawienia</p><IoSettingsOutline/></Link>
+                <Link
+                    className='link' to='/order'>
+                    <motion.div
+                    whileHover={{ scale: 1.2,
+                    textShadow:"0px 0px white",
+                    boxShadow: "0px -5px 8px white"
+                   }}
+                    onHoverStart={e => {}}
+                    onHoverEnd={e => {}}><p>Zamów</p><IoFastFoodOutline/></motion.div></Link>
+                <Link className='link' to='/order-history'>         <motion.div
+                    whileHover={{ scale: 1.2,
+                    textShadow:"0px 0px white",
+                    boxShadow: "0px -5px 8px white"
+                   }}
+                    onHoverStart={e => {}}
+                    onHoverEnd={e => {}}><p>Historia zamówień</p><IoCalendarClearOutline/></motion.div></Link>
+                <Link className='link' to='/shopping-cart'>         <motion.div
+                    whileHover={{ scale: 1.2,
+                    textShadow:"0px 0px white",
+                    boxShadow: "0px -5px 8px white"
+                   }}
+                    onHoverStart={e => {}}
+                    onHoverEnd={e => {}}><p>Koszyk</p><IoCartOutline/></motion.div></Link>
+                <Link className='link' to='/account-settings'>         <motion.div
+                    whileHover={{ scale: 1.2,
+                    textShadow:"0px 0px white",
+                    boxShadow: "0px -5px 8px white"
+                   }}
+                    onHoverStart={e => {}}
+                    onHoverEnd={e => {}}><p>Ustawienia</p><IoSettingsOutline/></motion.div></Link>
               </nav>
               <div className='arrow' onClick={() => ref.current.scrollTo(0)}>
               <i><BsChevronDoubleUp/></i>

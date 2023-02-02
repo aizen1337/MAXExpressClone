@@ -40,6 +40,7 @@ const Checkout = ({type, orderNumber, orderId, orderData, pending}) => {
             setTimeout(() => {
             setTotal(0)  
             resetShoppingCart();
+            navigate('/order-history')
             },3000)}
          )
         .catch((error) => console.log(error))  
